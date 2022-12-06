@@ -84,7 +84,7 @@ require 'function.php';
 
                                     <tbody>
                                         <?php
-                                        $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM masuk m, stock s WHERE s.idbarang = m.idbarang");
+                                        $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM pb_barangmasuk m, pb_stock s WHERE s.idbarang = m.idbarang");
                                         while ($data = mysqli_fetch_array($ambilsemuadatastock)) {
                                             $idb = $data['idbarang'];
                                             $idm = $data['idmasuk'];
@@ -218,7 +218,7 @@ require 'function.php';
 
                     <select name="barangnya" class="form-control">
                         <?php
-                        $ambilsemuadatanya = mysqli_query($conn, "SELECT * FROM stock");
+                        $ambilsemuadatanya = mysqli_query($conn, "SELECT * FROM pb_stock");
                         while ($fetcharray = mysqli_fetch_array($ambilsemuadatanya)) {
                             $namabarangnya = $fetcharray['namabarang'];
                             $idbarangnya = $fetcharray['idbarang'];

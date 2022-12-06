@@ -75,7 +75,7 @@ require 'cek.php';
 
                             <!-- Alert -->
                             <?php
-                                $ambildatastock = mysqli_query($conn, "SELECT * FROM stock WHERE stock < 1");
+                                $ambildatastock = mysqli_query($conn, "SELECT * FROM pb_stock WHERE stock < 1");
 
                                 while($fetch=mysqli_fetch_array($ambildatastock)) {
                                     $barang = $fetch['namabarang'];
@@ -103,7 +103,7 @@ require 'cek.php';
 
                                     <tbody>
                                         <?php
-                                        $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM stock");
+                                        $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM pb_stock");
                                         $i = 1;
                                         while ($data = mysqli_fetch_array($ambilsemuadatastock)) {
                                             $namabarang = $data['namabarang'];

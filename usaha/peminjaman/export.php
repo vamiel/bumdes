@@ -34,7 +34,7 @@ require 'cek.php';
 
                 <tbody>
                     <?php
-                    $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM stock");
+                    $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM pb_stock");
                     $i = 1;
                     while ($data = mysqli_fetch_array($ambilsemuadatastock)) {
                         $namabarang = $data['namabarang'];

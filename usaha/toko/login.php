@@ -214,9 +214,9 @@ if (isset($_POST['login'])) {
 					<h3>Hubungi Kami</h3>
 
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Richard's Lab, DKI Jakarta.</li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">info@email</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 8113 2322</li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>One Server</li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">christofernero@gmail.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 852 4318 7590</li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
@@ -239,7 +239,7 @@ if (isset($_POST['login'])) {
 		</div>
 
 	</div>
-	<div class="footer-botm">
+	<div class="footer-bottom">
 		<div class="container">
 			<div class="w3layouts-foot">
 				<ul>
