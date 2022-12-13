@@ -5,6 +5,7 @@
   font-family: 'Poppins';
   src: url(../fonts/Poppins/);
 }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&display=swap');
 
 
 /*--------------------------------------------------------------
@@ -93,7 +94,18 @@ h6 {
 
 #header .logo img {
   max-height: 50px;
+}
+#header .logo2 img {
+  max-height: 20px;
+}
 
+/*--------------------------------------------------------------
+# Jumbotron
+--------------------------------------------------------------*/
+@media (max-width: 1366px) {
+  .jumbotron h1 p img {
+    left: -90%;
+  }
 }
 
 /*--------------------------------------------------------------

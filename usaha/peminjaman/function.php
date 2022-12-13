@@ -52,15 +52,27 @@ if(isset($_POST['addbarangkeluar'])) {
     $ambildatanya = mysqli_fetch_array($cekstocksekarang);
 
     $stocksekarang = $ambildatanya['stock'];
-    $tambahkanstocksekarangdenganquantity = $stocksekarang - $qty;
 
-    $addtokeluar = mysqli_query($conn, "INSERT INTO pb_barangkeluar (idbarang, penerima, qty) values ('$barangnya', '$penerima', '$qty')");
-    $updatestockmasuk = mysqli_query($conn, "UPDATE pb_stock SET stock='$tambahkanstocksekarangdenganquantity' WHERE idbarang='$barangnya'");
-    if($addtokeluar && $updatestockmasuk) {
-        header('location:keluar.php');
+    if($stocksekarang >= $qty) {
+        // Kalau Barangnya Cukup
+        $tambahkanstocksekarangdenganquantity = $stocksekarang - $qty;
+
+        $addtokeluar = mysqli_query($conn, "INSERT INTO pb_barangkeluar (idbarang, penerima, qty) values ('$barangnya', '$penerima', '$qty')");
+        $updatestockmasuk = mysqli_query($conn, "UPDATE pb_stock SET stock='$tambahkanstocksekarangdenganquantity' WHERE idbarang='$barangnya'");
+        if($addtokeluar && $updatestockmasuk) {
+            header('location:keluar.php');
+        } else {
+            echo 'Gagal';
+            header('location:keluar.php');
+        }
     } else {
-        echo 'Gagal';
-        header('location:keluar.php');
+        // Kalau Barangnya Tidak Cukup
+        echo '
+        <script>
+            alert("Stock saat ini tidak mencukupi");
+            windows.location.href="keluar.php";
+        </script>
+        ';
     }
 };
 
@@ -213,6 +225,21 @@ if(isset($_POST['hapusbarangkeluar'])) {
         header('location: keluar.php');
     } else {
         header('location: keluar.php');
+    }
+};
+
+
+// Menambah Admin Baru
+if(isset($_POST['addadmin'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $queryinsert = mysqli_query($conn, "INSERT INTO login (email, password) VALUES ('$email', '$password')");
+
+    if($queryinsert) {
+        header('location: admin.php');
+    } else {
+        header('location: admin.php');
     }
 };
 
