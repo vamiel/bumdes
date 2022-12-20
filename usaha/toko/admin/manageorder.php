@@ -13,7 +13,7 @@
       type="image/png" 
       href="../favicon.png">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Kelola Pesanan - Tokopekita</title>
+    <title>Kelola Pesanan - BUMDES SIMAK</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -148,7 +148,7 @@
 												<th>Status</th>
 											</tr></thead><tbody>
 											<?php 
-											$brgs=mysqli_query($conn,"SELECT * from cart c, login l where c.userid=l.userid and status!='Cart' and status!='Selesai' order by idcart ASC");
+											$brgs=mysqli_query($conn,"SELECT * FROM toko_cart c, toko_login l WHERE c.userid=l.userid AND STATUS!='Cart' AND STATUS!='Selesai' ORDER BY idcart ASC");
 											$no=1;
 											while($p=mysqli_fetch_array($brgs)){
 											$orderids = $p['orderid'];
@@ -161,7 +161,7 @@
 													<td><?php echo $p['tglorder'] ?></td>
 													<td>Rp<?php 
 												
-												$result1 = mysqli_query($conn,"SELECT SUM(d.qty*p.hargaafter) AS count FROM detailorder d, produk p where orderid='$orderids' and p.idproduk=d.idproduk order by d.idproduk ASC");
+												$result1 = mysqli_query($conn,"SELECT SUM(d.qty*p.hargaafter) AS count FROM toko_detailorder d, toko_produk p WHERE orderid='$orderids' AND p.idproduk=d.idproduk ORDER BY d.idproduk ASC");
 												$cekrow = mysqli_num_rows($result1);
 												$row1 = mysqli_fetch_assoc($result1);
 												$count = $row1['count'];
@@ -174,7 +174,7 @@
 													
 													//echo $p['status'] 
 													$orders = $p['orderid'];
-													$cekkonfirmasipembayaran = mysqli_query($conn,"select * from konfirmasi where orderid='$orders'");
+													$cekkonfirmasipembayaran = mysqli_query($conn,"SELECT * FROM toko_konfirmasi WHERE orderid='$orders'");
 													$cekroww = mysqli_num_rows($cekkonfirmasipembayaran);
 													
 													if($cekroww > 0){

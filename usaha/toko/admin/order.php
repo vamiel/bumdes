@@ -2,14 +2,14 @@
 session_start();
 include '../dbconnect.php';
 $orderids = $_GET['orderid'];
-$liatcust = mysqli_query($conn,"select * from login l, cart c where orderid='$orderids' and l.userid=c.userid");
+$liatcust = mysqli_query($conn,"SELECT * FROM toko_login l, toko_cart c WHERE orderid='$orderids' AND l.userid=c.userid");
 $checkdb = mysqli_fetch_array($liatcust);
 date_default_timezone_set("Asia/Bangkok");
 
 if(isset($_POST['kirim']))
 	{
-		$updatestatus = mysqli_query($conn,"update cart set status='Pengiriman' where orderid='$orderids'");
-		$del =  mysqli_query($conn,"delete from konfirmasi where orderid='$orderids'");
+		$updatestatus = mysqli_query($conn,"UPDATE toko_cart SET STATUS='Pengiriman' WHERE orderid='$orderids'");
+		$del =  mysqli_query($conn,"DELETE FROM toko_konfirmasi WHERE orderid='$orderids'");
 		
 		if($updatestatus&&$del){
 			echo " <div class='alert alert-success'>
@@ -27,7 +27,7 @@ if(isset($_POST['kirim']))
 
 if(isset($_POST['selesai']))
 	{
-		$updatestatus = mysqli_query($conn,"update cart set status='Selesai' where orderid='$orderids'");
+		$updatestatus = mysqli_query($conn,"UPDATE toko_cart SET STATUS='Selesai' WHERE orderid='$orderids'");
 		
 		if($updatestatus){
 			echo " <div class='alert alert-success'>
@@ -148,7 +148,6 @@ if(isset($_POST['selesai']))
                         <ul class="notification-area pull-right">
                             <li><h3><div class="date">
 								<script type='text/javascript'>
-						<!--
 						var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 						var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 						var date = new Date();
@@ -198,12 +197,12 @@ if(isset($_POST['selesai']))
 												
 											</tr></thead><tbody>
 											<?php 
-											$brgs=mysqli_query($conn,"SELECT * from detailorder d, produk p where orderid='$orderids' and d.idproduk=p.idproduk order by d.idproduk ASC");
+											$brgs=mysqli_query($conn,"SELECT * FROM toko_detailorder d, toko_produk p WHERE orderid='$orderids' AND d.idproduk=p.idproduk ORDER BY d.idproduk ASC");
 											$no=1;
 											while($p=mysqli_fetch_array($brgs)){
 												$total = $p['qty']*$p['hargaafter'];
 												
-												$result = mysqli_query($conn,"SELECT SUM(d.qty*p.hargaafter) AS count FROM detailorder d, produk p where orderid='$orderids' and d.idproduk=p.idproduk order by d.idproduk ASC");
+												$result = mysqli_query($conn,"SELECT SUM(d.qty*p.hargaafter) AS count FROM toko_detailorder d, toko_produk p WHERE orderid='$orderids' AND d.idproduk=p.idproduk ORDER BY d.idproduk ASC");
 												$row = mysqli_fetch_assoc($result);
 												$cekrow = mysqli_num_rows($result);
 												$count = $row['count'];
@@ -229,7 +228,7 @@ if(isset($_POST['selesai']))
 												<th colspan="4" style="text-align:right">Total:</th>
 												<th>Rp<?php 
 												
-												$result1 = mysqli_query($conn,"SELECT SUM(d.qty*p.hargaafter) AS count FROM detailorder d, produk p where orderid='$orderids' and d.idproduk=p.idproduk order by d.idproduk ASC");
+												$result1 = mysqli_query($conn,"SELECT SUM(d.qty*p.hargaafter) AS count FROM toko_detailorder d, toko_produk p WHERE orderid='$orderids' AND d.idproduk=p.idproduk ORDER BY d.idproduk ASC");
 												$cekrow = mysqli_num_rows($result1);
 												$row1 = mysqli_fetch_assoc($result1);
 												$count = $row1['count'];
@@ -247,7 +246,7 @@ if(isset($_POST['selesai']))
 									<?php
 									
 									if($checkdb['status']=='Confirmed'){
-										$ambilinfo = mysqli_query($conn,"select * from konfirmasi where orderid='$orderids'");
+										$ambilinfo = mysqli_query($conn,"SELECT * FROM toko_konfirmasi WHERE orderid='$orderids'");
 										while($tarik=mysqli_fetch_array($ambilinfo)){		
 										$met = $tarik['payment'];
 										$namarek = $tarik['namarekening'];

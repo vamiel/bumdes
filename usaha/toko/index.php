@@ -146,7 +146,7 @@ include 'dbconnect.php';
 											<h6>Kategori</h6>
 
 											<?php
-											$kat = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+											$kat = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY idkategori ASC");
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>
@@ -206,7 +206,7 @@ include 'dbconnect.php';
 							<div class="agile_top_brands_grids">
 
 								<?php
-								$brgs = mysqli_query($conn, "SELECT * from produk order by idproduk ASC");
+								$brgs = mysqli_query($conn, "SELECT * FROM toko_produk ORDER BY idproduk ASC");
 								$no = 1;
 								while ($p = mysqli_fetch_array($brgs)) {
 

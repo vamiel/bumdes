@@ -147,7 +147,7 @@ $s = $_POST['Search'];
 											<h6>Kategori</h6>
 
 											<?php
-											$kat = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+											$kat = mysqli_query($conn, "SELECT * from toko_kategori order by idkategori ASC");
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>

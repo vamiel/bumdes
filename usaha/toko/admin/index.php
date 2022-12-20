@@ -2,15 +2,15 @@
 	session_start();
 	include '../dbconnect.php';
 		
-	$itungcust = mysqli_query($conn,"select count(userid) as jumlahcust from login where role='Member'");
+	$itungcust = mysqli_query($conn,"SELECT count(userid) AS jumlahcust FROM toko_login WHERE ROLE='Member'");
 	$itungcust2 = mysqli_fetch_assoc($itungcust);
 	$itungcust3 = $itungcust2['jumlahcust'];
 	
-	$itungorder = mysqli_query($conn,"select count(idcart) as jumlahorder from cart where status not like 'Selesai' and status not like 'Canceled'");
+	$itungorder = mysqli_query($conn,"SELECT count(idcart) AS jumlahorder FROM toko_cart WHERE STATUS NOT LIKE 'Selesai' AND STATUS NOT LIKE 'Canceled'");
 	$itungorder2 = mysqli_fetch_assoc($itungorder);
 	$itungorder3 = $itungorder2['jumlahorder'];
 	
-	$itungtrans = mysqli_query($conn,"select count(orderid) as jumlahtrans from konfirmasi");
+	$itungtrans = mysqli_query($conn,"SELECT count(orderid) AS jumlahtrans FROM toko_konfirmasi");
 	$itungtrans2 = mysqli_fetch_assoc($itungtrans);
 	$itungtrans3 = $itungtrans2['jumlahtrans'];
 	

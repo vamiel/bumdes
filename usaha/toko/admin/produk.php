@@ -25,8 +25,8 @@ if (isset($_POST["addproduct"])) {
 		if ($ukuran_file <= 5000000) {
 			if (move_uploaded_file($tmp_file, $path)) {
 
-				$query = "insert into produk (idkategori, namaproduk, gambar, deskripsi, rate, hargabefore, hargaafter)
-			  values('$idkategori','$namaproduk','$pathdb','$deskripsi','$rate','$hargabefore','$hargaafter')";
+				$query = "INSERT INTO toko_produk (idkategori, namaproduk, gambar, deskripsi, rate, hargabefore, hargaafter)
+			  VALUES ('$idkategori','$namaproduk','$pathdb','$deskripsi','$rate','$hargabefore','$hargaafter')";
 				$sql = mysqli_query($conn, $query); // Eksekusi/ Jalankan query dari variabel $query
 
 				if ($sql) {
@@ -62,7 +62,7 @@ if (isset($_POST["addproduct"])) {
 	<meta charset="utf-8">
 	<link rel="icon" type="image/png" href="../favicon.png">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Kelola Produk - Tokopekita</title>
+	<title>Kelola Produk - BUMDES SIMAK</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -207,7 +207,7 @@ if (isset($_POST["addproduct"])) {
 										</thead>
 										<tbody>
 											<?php
-											$brgs = mysqli_query($conn, "SELECT * from kategori k, produk p where k.idkategori=p.idkategori order by idproduk ASC");
+											$brgs = mysqli_query($conn, "SELECT * FROM toko_kategori k, toko_produk p WHERE k.idkategori=p.idkategori ORDER BY idproduk ASC");
 											$no = 1;
 											while ($p = mysqli_fetch_array($brgs)) {
 												$idp = $p['idproduk'];
@@ -304,7 +304,7 @@ if (isset($_POST["addproduct"])) {
 							<select name="idkategori" class="form-control">
 								<option selected>Pilih Kategori</option>
 								<?php
-								$det = mysqli_query($conn, "SELECT * from kategori order by namakategori ASC");
+								$det = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY namakategori ASC");
 								while ($d = mysqli_fetch_array($det)) {
 								?>
 									<option value="<?php echo $d['idkategori'] ?>"><?php echo $d['namakategori'] ?></option>

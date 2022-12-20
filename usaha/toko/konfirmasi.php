@@ -12,7 +12,7 @@ include 'dbconnect.php';
 if (isset($_POST['confirm'])) {
 
 	$userid = $_SESSION['id'];
-	$veriforderid = mysqli_query($conn, "select * from cart where orderid='$idorder'");
+	$veriforderid = mysqli_query($conn, "SELECT * FROM toko_cart WHERE orderid='$idorder'");
 	$fetch = mysqli_fetch_array($veriforderid);
 	$liat = mysqli_num_rows($veriforderid);
 
@@ -21,11 +21,11 @@ if (isset($_POST['confirm'])) {
 		$metode = $_POST['metode'];
 		$tanggal = $_POST['tanggal'];
 
-		$kon = mysqli_query($conn, "insert into konfirmasi (orderid, userid, payment, namarekening, tglbayar) 
-		values('$idorder','$userid','$metode','$nama','$tanggal')");
+		$kon = mysqli_query($conn, "INSERT INTO toko_konfirmasi (orderid, userid, payment, namarekening, tglbayar) 
+		VALUES ('$idorder','$userid','$metode','$nama','$tanggal')");
 		if ($kon) {
 
-			$up = mysqli_query($conn, "update cart set status='Confirmed' where orderid='$idorder'");
+			$up = mysqli_query($conn, "UPDATE toko_cart SET STATUS='Confirmed' WHERE orderid='$idorder'");
 
 			echo " <div class='alert alert-success'>
 			Terima kasih telah melakukan konfirmasi, team kami akan melakukan verifikasi.
@@ -191,7 +191,7 @@ if (isset($_POST['confirm'])) {
 											<h6>Kategori</h6>
 
 											<?php
-											$kat = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+											$kat = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY idkategori ASC");
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>
@@ -243,7 +243,7 @@ if (isset($_POST['confirm'])) {
 					<select name="metode" class="form-control">
 
 						<?php
-						$metode = mysqli_query($conn, "select * from pembayaran");
+						$metode = mysqli_query($conn, "SELECT * FROM toko_pembayaran");
 
 						while ($a = mysqli_fetch_array($metode)) {
 						?>

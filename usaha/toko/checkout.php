@@ -7,16 +7,16 @@ if (!isset($_SESSION['log'])) {
 } else {
 };
 $uid = $_SESSION['id'];
-$caricart = mysqli_query($conn, "select * from cart where userid='$uid' and status='Cart'");
+$caricart = mysqli_query($conn, "SELECT * FROM toko_cart WHERE userid='$uid' AND STATUS='Cart'");
 $fetc = mysqli_fetch_array($caricart);
 $orderidd = $fetc['orderid'];
-$itungtrans = mysqli_query($conn, "select count(detailid) as jumlahtrans from detailorder where orderid='$orderidd'");
+$itungtrans = mysqli_query($conn, "SELECT count(detailid) AS jumlahtrans FROM toko_detailorder WHERE orderid='$orderidd'");
 $itungtrans2 = mysqli_fetch_assoc($itungtrans);
 $itungtrans3 = $itungtrans2['jumlahtrans'];
 
 if (isset($_POST["checkout"])) {
 
-	$q3 = mysqli_query($conn, "update cart set status='Payment' where orderid='$orderidd'");
+	$q3 = mysqli_query($conn, "UPDATE toko_cart SET STATUS='Payment' WHERE orderid='$orderidd'");
 	if ($q3) {
 		echo "Berhasil Check Out
 		<meta http-equiv='refresh' content='1; url= index.php'/>";
@@ -170,7 +170,7 @@ if (isset($_POST["checkout"])) {
 											<h6>Kategori</h6>
 
 											<?php
-											$kat = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+											$kat = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY idkategori ASC");
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>
@@ -207,7 +207,7 @@ if (isset($_POST["checkout"])) {
 	<!-- checkout -->
 	<div class="checkout">
 		<div class="container">
-			<h1>Terima kasih, <?= $_SESSION['name'] ?> telah membeli <?php echo $itungtrans3 ?> barang di Tokopekita</span></h1>
+			<h1>Terima kasih, <?= $_SESSION['name'] ?> telah membeli <?php echo $itungtrans3 ?> barang di BUMDES SiMak</span></h1>
 			<div class="checkout-right">
 				<table class="timetable_sub">
 					<thead>
@@ -224,7 +224,7 @@ if (isset($_POST["checkout"])) {
 					</thead>
 
 					<?php
-					$brg = mysqli_query($conn, "SELECT * from detailorder d, produk p where orderid='$orderidd' and d.idproduk=p.idproduk order by d.idproduk ASC");
+					$brg = mysqli_query($conn, "SELECT * FROM toko_detailorder d, toko_produk p WHERE orderid='$orderidd' AND d.idproduk=p.idproduk ORDER BY d.idproduk ASC");
 					$no = 1;
 					while ($b = mysqli_fetch_array($brg)) {
 
@@ -288,7 +288,7 @@ if (isset($_POST["checkout"])) {
 				<h4>Total Harga yang harus dibayar saat ini</h4>
 				<ul>
 					<?php
-					$brg = mysqli_query($conn, "SELECT * from detailorder d, produk p where orderid='$orderidd' and d.idproduk=p.idproduk order by d.idproduk ASC");
+					$brg = mysqli_query($conn, "SELECT * FROM toko_detailorder d, toko_produk p WHERE orderid='$orderidd' AND d.idproduk=p.idproduk ORDER BY d.idproduk ASC");
 					$no = 1;
 					$subtotal = 0;
 					while ($b = mysqli_fetch_array($brg)) {
@@ -324,7 +324,7 @@ if (isset($_POST["checkout"])) {
 
 
 			<?php
-			$metode = mysqli_query($conn, "select * from pembayaran");
+			$metode = mysqli_query($conn, "SELECT * FORM toko_pembayaran");
 
 			while ($p = mysqli_fetch_array($metode)) {
 

@@ -2,7 +2,7 @@
 
 session_start();
 
-$conn = mysqli_connect("localhost", "root", "", "usaha");
+$conn = mysqli_connect("localhost", "root", "", "bumdes_simak");
 
 
 // Menambah Barang Baru
@@ -11,7 +11,11 @@ if(isset($_POST['addnewbarang'])) {
     $deskripsi = $_POST['deskripsi'];
     $stock = $_POST['stock'];
 
-    $addtotable = mysqli_query($conn, "INSERT into pb_stock (namabarang, deskripsi, stock) values ('$namabarang', '$deskripsi', '$stock')");
+    // Gambar
+    $allowed_extension = array('png', 'jpg', 'jpeg');
+    $nama = $_FILES['file']['name']; // Mengambil Nama Gambar
+
+    $addtotable = mysqli_query($conn, "INSERT INTO pb_stock (namabarang, deskripsi, stock) VALUES ('$namabarang', '$deskripsi', '$stock')");
     if($addtotable) {
         header('location:index.php');
     } else {
@@ -32,7 +36,7 @@ if(isset($_POST['barangmasuk'])) {
     $stocksekarang = $ambildatanya['stock'];
     $tambahkanstocksekarangdenganquantity = $stocksekarang + $qty;
 
-    $addtomasuk = mysqli_query($conn, "INSERT INTO pb_barangmasuk (idbarang, keterangan, qty) values ('$barangnya', '$penerima', '$qty')");
+    $addtomasuk = mysqli_query($conn, "INSERT INTO pb_masuk (idbarang, keterangan, qty) VALUES ('$barangnya', '$penerima', '$qty')");
     $updatestockmasuk = mysqli_query($conn, "UPDATE pb_stock SET stock='$tambahkanstocksekarangdenganquantity' WHERE idbarang='$barangnya'");
     if($addtomasuk && $updatestockmasuk) {
         header('location:masuk.php');
@@ -57,7 +61,7 @@ if(isset($_POST['addbarangkeluar'])) {
         // Kalau Barangnya Cukup
         $tambahkanstocksekarangdenganquantity = $stocksekarang - $qty;
 
-        $addtokeluar = mysqli_query($conn, "INSERT INTO pb_barangkeluar (idbarang, penerima, qty) values ('$barangnya', '$penerima', '$qty')");
+        $addtokeluar = mysqli_query($conn, "INSERT INTO pb_keluar (idbarang, penerima, qty) VALUES ('$barangnya', '$penerima', '$qty')");
         $updatestockmasuk = mysqli_query($conn, "UPDATE pb_stock SET stock='$tambahkanstocksekarangdenganquantity' WHERE idbarang='$barangnya'");
         if($addtokeluar && $updatestockmasuk) {
             header('location:keluar.php');
@@ -114,7 +118,7 @@ if(isset($_POST['updatebarangmasuk'])) {
     $stocknya = mysqli_fetch_array($lihatstock);
     $stockskrg = $stocknya['stock'];
 
-    $qtysekarang = mysqli_query($conn, "SELECT * FROM pb_barangmasuk WHERE idmasuk='$idm'");
+    $qtysekarang = mysqli_query($conn, "SELECT * FROM pb_masuk WHERE idmasuk='$idm'");
     $qtynya = mysqli_fetch_array($qtysekarang);
     $qtyskrg = $qtynya['qty'];
 
@@ -122,7 +126,7 @@ if(isset($_POST['updatebarangmasuk'])) {
         $selisih = $qty - $qtyskrg;
         $kurangin = $stockskrg - $selisih;
         $kurangistocknya = mysqli_query($conn, "UPDATE pb_stock SET stock='$kurangin' WHERE idbarang='$idb'");
-        $updatenya = mysqli_query($conn, "UPDATE pb_barangmasuk SET qty='$qty', keterangan='$deskripsi' WHERE idmasuk='$idm'");
+        $updatenya = mysqli_query($conn, "UPDATE pb_masuk SET qty='$qty', keterangan='$deskripsi' WHERE idmasuk='$idm'");
         if($kurangistocknya && $updatenya) {
             header('location:masuk.php');
         } else {
@@ -133,7 +137,7 @@ if(isset($_POST['updatebarangmasuk'])) {
         $selisih = $qtyskrg - $qty;
         $kurangin = $stockskrg + $selisih;
         $kurangistocknya = mysqli_query($conn, "UPDATE pb_stock SET stock='$kurangin' WHERE idbarang='$idb'");
-        $updatenya = mysqli_query($conn, "UPDATE pb_barangmasuk SET qty='$qty', keterangan='$deskripsi' WHERE idmasuk='$idm'");
+        $updatenya = mysqli_query($conn, "UPDATE pb_masuk SET qty='$qty', keterangan='$deskripsi' WHERE idmasuk='$idm'");
         if($kurangistocknya && $updatenya) {
             header('location:masuk.php');
         } else {
@@ -156,7 +160,7 @@ if(isset($_POST['hapusbarangmasuk'])) {
     $selisih = $stok-$qty;
 
     $update = mysqli_query($conn, "UPDATE pb_stock SET stock='$selisih' WHERE idbarang='$idb'");
-    $hapusdata = mysqli_query($conn, "DELETE FROM pb_barangmasuk WHERE idmasuk='$idm'");
+    $hapusdata = mysqli_query($conn, "DELETE FROM pb_masuk WHERE idmasuk='$idm'");
     
     if($update && $hapusdata) {
         header('location: masuk.php');
@@ -177,7 +181,7 @@ if(isset($_POST['updatebarangkeluar'])) {
     $stocknya = mysqli_fetch_array($lihatstock);
     $stockskrg = $stocknya['stock'];
 
-    $qtysekarang = mysqli_query($conn, "SELECT * FROM pb_barangkeluar WHERE idkeluar='$idk'");
+    $qtysekarang = mysqli_query($conn, "SELECT * FROM pb_keluar WHERE idkeluar='$idk'");
     $qtynya = mysqli_fetch_array($qtysekarang);
     $qtyskrg = $qtynya['qty'];
 
@@ -185,7 +189,7 @@ if(isset($_POST['updatebarangkeluar'])) {
         $selisih = $qty - $qtyskrg;
         $kurangin = $stockskrg - $selisih;
         $kurangistocknya = mysqli_query($conn, "UPDATE pb_stock SET stock='$kurangin' WHERE idbarang='$idb'");
-        $updatenya = mysqli_query($conn, "UPDATE pb_barangkeluar SET qty='$qty', penerima='$penerima' WHERE idkeluar='$idk'");
+        $updatenya = mysqli_query($conn, "UPDATE pb_keluar SET qty='$qty', penerima='$penerima' WHERE idkeluar='$idk'");
         if($kurangistocknya && $updatenya) {
             header('location:keluar.php');
         } else {
@@ -196,7 +200,7 @@ if(isset($_POST['updatebarangkeluar'])) {
         $selisih = $qtyskrg - $qty;
         $kurangin = $stockskrg + $selisih;
         $kurangistocknya = mysqli_query($conn, "UPDATE pb_stock SET stock='$kurangin' WHERE idbarang='$idb'");
-        $updatenya = mysqli_query($conn, "UPDATE pb_barangkeluar SET qty='$qty', penerima='$penerima' WHERE idkeluar='$idk'");
+        $updatenya = mysqli_query($conn, "UPDATE pb_keluar SET qty='$qty', penerima='$penerima' WHERE idkeluar='$idk'");
         if($kurangistocknya && $updatenya) {
             header('location:keluar.php');
         } else {
@@ -219,7 +223,7 @@ if(isset($_POST['hapusbarangkeluar'])) {
     $selisih = $stok+$qty;
 
     $update = mysqli_query($conn, "UPDATE pb_stock SET stock='$selisih' WHERE idbarang='$idb'");
-    $hapusdata = mysqli_query($conn, "DELETE FROM pb_barangkeluar WHERE idkeluar='$idk'");
+    $hapusdata = mysqli_query($conn, "DELETE FROM pb_keluar WHERE idkeluar='$idk'");
     
     if($update && $hapusdata) {
         header('location: keluar.php');
@@ -234,7 +238,7 @@ if(isset($_POST['addadmin'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $queryinsert = mysqli_query($conn, "INSERT INTO login (email, password) VALUES ('$email', '$password')");
+    $queryinsert = mysqli_query($conn, "INSERT INTO pb_login (email, password) VALUES ('$email', '$password')");
 
     if($queryinsert) {
         header('location: admin.php');
@@ -243,6 +247,34 @@ if(isset($_POST['addadmin'])) {
     }
 };
 
+
+// Edit Data Admin
+if(isset($_POST['updatedataadmin'])) {
+    $emailbaru = $_POST['emailadmin'];
+    $passwordbaru = $_POST['passwordbaru'];
+    $idnya = $_POST['id'];
+
+    $queryupdate = mysqli_query($conn, "UPDATE pb_login SET email='$emailbaru', password='$passwordbaru' WHERE iduser='$idnya'");
+
+    if($queryupdate) {
+        header('location:admin.php');
+    } else {
+        header('location:admin.php');
+    }
+};
+
+// Hapus Data Admin
+if(isset($_POST['hapusdataadmin'])) {
+    $id = $_POST['id'];
+
+    $querydelete = mysqli_query($conn, "DELETE FROM pb_login WHERE iduser='$id'");
+
+    if($querydelete) {
+        header('location:admin.php');
+    } else {
+        header('location:admin.php');
+    }
+};
 
 
 ?>

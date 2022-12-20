@@ -147,7 +147,7 @@ $idk = $_GET['idkategori'];
 											<h6>Kategori</h6>
 
 											<?php
-											$kat = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+											$kat = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY idkategori ASC");
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>
@@ -191,7 +191,7 @@ $idk = $_GET['idkategori'];
 
 
 						<?php
-						$kat = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+						$kat = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY idkategori ASC");
 						while ($p = mysqli_fetch_array($kat)) {
 
 						?>
@@ -209,7 +209,7 @@ $idk = $_GET['idkategori'];
 
 
 					<?php
-					$brgs = mysqli_query($conn, "SELECT * from produk where idkategori='$idk' order by idproduk ASC");
+					$brgs = mysqli_query($conn, "SELECT * FROM toko_produk WHERE idkategori='$idk' ORDER BY idproduk ASC");
 					$x = mysqli_num_rows($brgs);
 
 					if ($x > 0) {

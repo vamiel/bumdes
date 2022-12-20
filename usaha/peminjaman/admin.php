@@ -12,7 +12,7 @@ require 'cek.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard</title>
+    <title>Kelola Admin</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous">
@@ -35,23 +35,23 @@ require 'cek.php';
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <a class="nav-link" href="../../beranda.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             Home
                         </a>
                         <a class="nav-link" href="index.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                             Stock Barang
                         </a>
                         <a class="nav-link" href="masuk.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                             Barang Masuk
                         </a>
                         <a class="nav-link" href="keluar.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                             Barang Keluar
                         </a>
                         <a class="nav-link" href="admin.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-id-card"></i></div>
                             Kelola Admin
                         </a>
                         <a class="nav-link" href="logout.php">
@@ -89,34 +89,35 @@ require 'cek.php';
                                     <tbody>
 
                                         <?php
-                                        $ambilsemuadataadmin = mysqli_query($conn, "SELECT * FROM login");
+                                        $ambilsemuadataadmin = mysqli_query($conn, "SELECT * FROM pb_login");
                                         $i = 1;
                                         while ($data = mysqli_fetch_array($ambilsemuadataadmin)) {
                                             $em = $data['email'];
-                                            $userid = $data['userid'];
+                                            $iduser = $data['iduser'];
+                                            $pw = $data['password'];
                                         ?>
 
                                             <tr>
                                                 <td><?= $i++; ?></td>
                                                 <td><?= $em; ?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $userid; ?>">
+                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $iduser; ?>">
                                                         Edit
                                                     </button>
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?= $userid; ?>">
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?= $iduser; ?>">
                                                         Delete
                                                     </button>
                                                 </td>
                                             </tr>
 
                                             <!-- Modal Edit -->
-                                            <div class="modal fade" id="edit<?= $userid; ?>">
+                                            <div class="modal fade" id="edit<?= $iduser; ?>">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
 
                                                         <!-- Modal Header -->
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Edit Barang</h4>
+                                                            <h4 class="modal-title">Edit Admin</h4>
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
 
@@ -125,10 +126,10 @@ require 'cek.php';
                                                             <div class="modal-body">
                                                                 <input type="email" name="emailadmin" value="<?= $em; ?>" class="form-control" placeholder="Email" required>
                                                                 <br>
-                                                                <input type="password" name="passwordbaru" class="form-control" placeholder="Password">
+                                                                <input type="password" name="passwordbaru" value="<?= $pw; ?>" class="form-control" placeholder="Password">
                                                                 <br>
-                                                                <input type="hidden" name="id" value="<?= $userid; ?>">
-                                                                <button type="submit" class="btn btn-primary" name="updateadmin">Submit</button>
+                                                                <input type="hidden" name="id" value="<?= $iduser; ?>">
+                                                                <button type="submit" class="btn btn-primary" name="updatedataadmin">Submit</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -138,13 +139,13 @@ require 'cek.php';
                                             <!-- End Modal Edit -->
 
                                             <!-- Modal Delete -->
-                                            <div class="modal fade" id="delete<?= $userid; ?>">
+                                            <div class="modal fade" id="delete<?= $iduser; ?>">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
 
                                                         <!-- Modal Header -->
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Hapus Barang?</h4>
+                                                            <h4 class="modal-title">Hapus Admin?</h4>
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
 
@@ -152,10 +153,10 @@ require 'cek.php';
                                                         <form method="post">
                                                             <div class="modal-body">
                                                                 Apakah Anda yakin ingin menghapus <?= $em; ?> ?
-                                                                <input type="hidden" name="id" value="<?= $userid; ?>">
+                                                                <input type="hidden" name="id" value="<?= $iduser; ?>">
                                                                 <br>
                                                                 <br>
-                                                                <button type="submit" class="btn btn-danger" name="hapusadmin">Hapus</button>
+                                                                <button type="submit" class="btn btn-danger" name="hapusdataadmin">Hapus</button>
                                                             </div>
                                                         </form>
                                                     </div>

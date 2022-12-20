@@ -8,17 +8,17 @@ if (!isset($_SESSION['log'])) {
 };
 
 $uid = $_SESSION['id'];
-$caricart = mysqli_query($conn, "SELECT * FROM cart WHERE userid='$uid' AND STATUS='Cart'");
+$caricart = mysqli_query($conn, "SELECT * FROM toko_cart WHERE userid='$uid' AND STATUS='Cart'");
 $fetc = mysqli_fetch_array($caricart);
 $orderidd = $fetc['orderid'];
-$itungtrans = mysqli_query($conn, "select count(detailid) as jumlahtrans from detailorder where orderid='$orderidd'");
+$itungtrans = mysqli_query($conn, "SELECT count(detailid) AS jumlahtrans FROM toko_detailOrder WHERE orderid='$orderidd'");
 $itungtrans2 = mysqli_fetch_assoc($itungtrans);
 $itungtrans3 = $itungtrans2['jumlahtrans'];
 
 if (isset($_POST["update"])) {
 	$kode = $_POST['idproduknya'];
 	$jumlah = $_POST['jumlah'];
-	$q1 = mysqli_query($conn, "update detailorder set qty='$jumlah' where idproduk='$kode' and orderid='$orderidd'");
+	$q1 = mysqli_query($conn, "UPDATE toko_detailorder SET qty='$jumlah' WHERE idproduk='$kode' AND orderid='$orderidd'");
 	if ($q1) {
 		echo "Berhasil Update Cart
 		<meta http-equiv='refresh' content='1; url= cart.php'/>";
@@ -28,7 +28,7 @@ if (isset($_POST["update"])) {
 	}
 } else if (isset($_POST["hapus"])) {
 	$kode = $_POST['idproduknya'];
-	$q2 = mysqli_query($conn, "delete from detailorder where idproduk='$kode' and orderid='$orderidd'");
+	$q2 = mysqli_query($conn, "DELETE FROM toko_detailOrder WHERE idproduk='$kode' AND orderid='$orderidd'");
 	if ($q2) {
 		echo "Berhasil Hapus";
 	} else {
@@ -179,7 +179,7 @@ if (isset($_POST["update"])) {
 											<h6>Kategori</h6>
 
 											<?php
-											$kat = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+											$kat = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY idkategori ASC");
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>
@@ -233,7 +233,7 @@ if (isset($_POST["update"])) {
 					</thead>
 
 					<?php
-					$brg = mysqli_query($conn, "SELECT * from detailorder d, produk p where orderid='$orderidd' and d.idproduk=p.idproduk order by d.idproduk ASC");
+					$brg = mysqli_query($conn, "SELECT * FROM toko_detailorder d, toko_produk p where orderid='$orderidd' and d.idproduk=p.idproduk order by d.idproduk ASC");
 					$no = 1;
 					while ($b = mysqli_fetch_array($brg)) {
 
@@ -297,7 +297,7 @@ if (isset($_POST["update"])) {
 				<h4>Total Harga</h4>
 				<ul>
 					<?php
-					$brg = mysqli_query($conn, "SELECT * from detailorder d, produk p where orderid='$orderidd' and d.idproduk=p.idproduk order by d.idproduk ASC");
+					$brg = mysqli_query($conn, "SELECT * FROM toko_detailorder d, toko_produk p WHERE orderid='$orderidd' AND d.idproduk=p.idproduk ORDER BY d.idproduk ASC");
 					$no = 1;
 					$subtotal = 10000;
 					while ($b = mysqli_fetch_array($brg)) {

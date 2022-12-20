@@ -9,7 +9,7 @@ if (isset($_POST['addmethod'])) {
     $an = $_POST['an'];
     $logo = $_POST['logo'];
 
-    $tambahmet = mysqli_query($conn, "insert into pembayaran (metode,norek,an,logo) values ('$metode','$norek','$an','$logo')");
+    $tambahmet = mysqli_query($conn, "INSERT INTO toko_pembayaran (metode,norek,an,logo) VALUES ('$metode','$norek','$an','$logo')");
     if ($tambahmet) {
         echo "
 		<meta http-equiv='refresh' content='1; url= pembayaran.php'/>  ";
@@ -27,7 +27,7 @@ if (isset($_POST['addmethod'])) {
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="../favicon.png">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Kelola Metode Pembayaran - Tokopekita</title>
+    <title>Kelola Metode Pembayaran - BUMDES SIMAK</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -168,7 +168,7 @@ if (isset($_POST['addmethod'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $brgs = mysqli_query($conn, "SELECT * from pembayaran order by no ASC");
+                                            $brgs = mysqli_query($conn, "SELECT * FROM toko_pembayaran ORDER BY NO ASC");
                                             $no = 1;
                                             while ($p = mysqli_fetch_array($brgs)) {
                                                 $metode = $p['metode'];

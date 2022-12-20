@@ -9,7 +9,7 @@
       type="image/png" 
       href="../favicon.png">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Kelola Pelanggan - Tokopekita</title>
+    <title>Kelola Pelanggan - BUMDES SIMAK</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -100,7 +100,6 @@
                         <ul class="notification-area pull-right">
                             <li><h3><div class="date">
 								<script type='text/javascript'>
-						<!--
 						var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 						var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 						var date = new Date();
@@ -143,7 +142,7 @@
 												<th>Email</th>
 											</tr></thead><tbody>
 											<?php 
-											$brgs=mysqli_query($conn,"SELECT * from login where role='Member' order by userid ASC");
+											$brgs=mysqli_query($conn,"SELECT * FROM toko_login WHERE ROLE='Member' ORDER BY userid ASC");
 											$no=1;
 											while($p=mysqli_fetch_array($brgs)){
 												?>

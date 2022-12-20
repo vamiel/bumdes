@@ -108,7 +108,7 @@
                     <li class="dropdown">
                         <a class="active"  href="#"><span>Usaha</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a class="active"  href="internet.html">Internet Desa</a></li>
+                            <li><a class="active"    href="internet.html">Internet Desa</a></li>
                             <li><a href="usaha/toko/">Toko</a></li>
                             <li><a href="usaha/peminjaman/">Peminjaman Alat Tani</a></li>
                         </ul>

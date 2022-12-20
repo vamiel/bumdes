@@ -13,8 +13,8 @@ if (isset($_POST['adduser'])) {
 	$email = $_POST['email'];
 	$pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
-	$tambahuser = mysqli_query($conn, "insert into login (namalengkap, email, password, notelp, alamat) 
-		values('$nama','$email','$pass','$telp','$alamat')");
+	$tambahuser = mysqli_query($conn, "INSERT INTO toko_login (namalengkap, email, password, notelp, alamat) 
+		VALUES ('$nama','$email','$pass','$telp','$alamat')");
 	if ($tambahuser) {
 		echo " <div class='alert alert-success'>
 			Berhasil mendaftar, silakan masuk.
@@ -156,7 +156,7 @@ if (isset($_POST['adduser'])) {
 											<h6>Kategori</h6>
 
 											<?php
-											$kat = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+											$kat = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY idkategori ASC");
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>

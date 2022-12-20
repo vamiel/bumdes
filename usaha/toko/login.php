@@ -13,7 +13,7 @@ $timenow = date("j-F-Y-h:i:s A");
 if (isset($_POST['login'])) {
 	$email = mysqli_real_escape_string($conn, $_POST['email']);
 	$pass = mysqli_real_escape_string($conn, $_POST['pass']);
-	$queryuser = mysqli_query($conn, "SELECT * FROM login WHERE email='$email'");
+	$queryuser = mysqli_query($conn, "SELECT * FROM toko_login WHERE email='$email'");
 	$cariuser = mysqli_fetch_assoc($queryuser);
 
 	if (password_verify($pass, $cariuser['password'])) {
@@ -157,7 +157,7 @@ if (isset($_POST['login'])) {
 											<h6>Kategori</h6>
 
 											<?php
-											$kat = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+											$kat = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY idkategori ASC");
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>

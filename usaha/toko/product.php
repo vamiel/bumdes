@@ -9,16 +9,16 @@ if (isset($_POST['addprod'])) {
 		header('location:login.php');
 	} else {
 		$ui = $_SESSION['id'];
-		$cek = mysqli_query($conn, "select * from cart where userid='$ui' and status='Cart'");
+		$cek = mysqli_query($conn, "SELECT * FROM toko_cart WHERE userid='$ui' AND STATUS='Cart'");
 		$liat = mysqli_num_rows($cek);
 		$f = mysqli_fetch_array($cek);
 		$orid = $f['orderid'];
 
-		//kalo ternyata udeh ada order id nya
+		// kalo ternyata udah ada order id nya
 		if ($liat > 0) {
 
-			//cek barang serupa
-			$cekbrg = mysqli_query($conn, "select * from detailorder where idproduk='$idproduk' and orderid='$orid'");
+			// cek barang serupa
+			$cekbrg = mysqli_query($conn, "SELECT * FROM toko_detailorder WHERE idproduk='$idproduk' AND orderid='$orid'");
 			$liatlg = mysqli_num_rows($cekbrg);
 			$brpbanyak = mysqli_fetch_array($cekbrg);
 			$jmlh = $brpbanyak['qty'];
@@ -28,7 +28,7 @@ if (isset($_POST['addprod'])) {
 				$i = 1;
 				$baru = $jmlh + $i;
 
-				$updateaja = mysqli_query($conn, "update detailorder set qty='$baru' where orderid='$orid' and idproduk='$idproduk'");
+				$updateaja = mysqli_query($conn, "UPDATE toko_detailorder SET qty='$baru' WHERE orderid='$orid' AND idproduk='$idproduk'");
 
 				if ($updateaja) {
 					echo " <div class='alert alert-success'>
@@ -43,7 +43,7 @@ if (isset($_POST['addprod'])) {
 				}
 			} else {
 
-				$tambahdata = mysqli_query($conn, "insert into detailorder (orderid,idproduk,qty) values('$orid','$idproduk','1')");
+				$tambahdata = mysqli_query($conn, "INSERT INTO toko_detailorder (orderid,idproduk,qty) VALUES ('$orid','$idproduk','1')");
 				if ($tambahdata) {
 					echo " <div class='alert alert-success'>
 								Berhasil menambahkan ke keranjang
@@ -61,10 +61,10 @@ if (isset($_POST['addprod'])) {
 			//kalo belom ada order id nya
 			$oi = crypt(rand(22, 999), time());
 
-			$bikincart = mysqli_query($conn, "insert into cart (orderid, userid) values('$oi','$ui')");
+			$bikincart = mysqli_query($conn, "INSERT INTO toko_cart (orderid, userid) VALUES ('$oi','$ui')");
 
 			if ($bikincart) {
-				$tambahuser = mysqli_query($conn, "insert into detailorder (orderid,idproduk,qty) values('$oi','$idproduk','1')");
+				$tambahuser = mysqli_query($conn, "INSERT INTO toko_detailorder (orderid,idproduk,qty) VALUES ('$oi','$idproduk','1')");
 				if ($tambahuser) {
 					echo " <div class='alert alert-success'>
 								Berhasil menambahkan ke keranjang
@@ -227,7 +227,7 @@ if (isset($_POST['addprod'])) {
 											<h6>Kategori</h6>
 
 											<?php
-											$kat = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+											$kat = mysqli_query($conn, "SELECT * from toko_kategori order by idkategori ASC");
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>
@@ -257,7 +257,7 @@ if (isset($_POST['addprod'])) {
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
 				<li class="active"><?php
-									$p = mysqli_fetch_array(mysqli_query($conn, "Select * from produk where idproduk='$idproduk'"));
+									$p = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM toko_produk WHERE idproduk='$idproduk'"));
 									echo $p['namaproduk'];
 									?></li>
 			</ol>

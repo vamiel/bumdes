@@ -13,7 +13,8 @@ require 'function.php';
     <meta name="author" content="" />
     <title>Barang Keluar</title>
     <link href="css/styles.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous">
     </script>
 </head>
@@ -34,23 +35,23 @@ require 'function.php';
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <a class="nav-link" href="../../beranda.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             Home
                         </a>
                         <a class="nav-link" href="index.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                             Stock Barang
                         </a>
                         <a class="nav-link" href="masuk.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                             Barang Masuk
                         </a>
                         <a class="nav-link" href="keluar.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                             Barang Keluar
                         </a>
                         <a class="nav-link" href="admin.php">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-id-card"></i></div>
                             Kelola Admin
                         </a>
                         <a class="nav-link" href="logout.php">
@@ -88,7 +89,7 @@ require 'function.php';
 
                                     <tbody>
                                         <?php
-                                        $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM pb_barangkeluar k, pb_stock s WHERE s.idbarang = k.idbarang");
+                                        $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM pb_keluar k, pb_stock s WHERE s.idbarang = k.idbarang");
                                         while ($data = mysqli_fetch_array($ambilsemuadatastock)) {
                                             $idk = $data['idkeluar'];
                                             $idb = $data['idbarang'];
@@ -97,77 +98,85 @@ require 'function.php';
                                             $qty = $data['qty'];
                                             $penerima = $data['penerima'];
                                         ?>
-                                            <tr>
-                                                <td><?= $tanggal; ?></td>
-                                                <td><?= $namabarang; ?></td>
-                                                <td><?= $qty; ?></td>
-                                                <td><?= $penerima; ?></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $idk; ?>">
-                                                        Edit
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?= $idk; ?>">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td><?= $tanggal; ?></td>
+                                            <td><?= $namabarang; ?></td>
+                                            <td><?= $qty; ?></td>
+                                            <td><?= $penerima; ?></td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                    data-target="#edit<?= $idk; ?>">
+                                                    Edit
+                                                </button>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                    data-target="#delete<?= $idk; ?>">
+                                                    Delete
+                                                </button>
+                                            </td>
+                                        </tr>
 
-                                            <!-- Modal Edit -->
-                                            <div class="modal fade" id="edit<?= $idk; ?>">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
+                                        <!-- Modal Edit -->
+                                        <div class="modal fade" id="edit<?= $idk; ?>">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
 
-                                                        <!-- Modal Header -->
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Edit Barang</h4>
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        </div>
-
-                                                        <!-- Modal body -->
-                                                        <form method="post">
-                                                            <div class="modal-body">
-                                                                <input type="text" name="penerima" value="<?= $penerima; ?>" class="form-control" required>
-                                                                <br>
-                                                                <input type="number" name="qty" value="<?= $qty; ?>" class="form-control" required>
-                                                                <br>
-                                                                <input type="hidden" name="idb" value="<?= $idb; ?>">
-                                                                <input type="hidden" name="idk" value="<?= $idk; ?>">
-                                                                <button type="submit" class="btn btn-primary" name="updatebarangkeluar">Submit</button>
-                                                            </div>
-                                                        </form>
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Edit Barang</h4>
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
                                                     </div>
+
+                                                    <!-- Modal body -->
+                                                    <form method="post">
+                                                        <div class="modal-body">
+                                                            <input type="text" name="penerima" value="<?= $penerima; ?>"
+                                                                class="form-control" required>
+                                                            <br>
+                                                            <input type="number" name="qty" value="<?= $qty; ?>"
+                                                                class="form-control" required>
+                                                            <br>
+                                                            <input type="hidden" name="idb" value="<?= $idb; ?>">
+                                                            <input type="hidden" name="idk" value="<?= $idk; ?>">
+                                                            <button type="submit" class="btn btn-primary"
+                                                                name="updatebarangkeluar">Submit</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <!-- End Modal Edit -->
+                                        <!-- End Modal Edit -->
 
-                                            <!-- Modal Delete -->
-                                            <div class="modal fade" id="delete<?= $idk; ?>">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
+                                        <!-- Modal Delete -->
+                                        <div class="modal fade" id="delete<?= $idk; ?>">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
 
-                                                        <!-- Modal Header -->
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Hapus Barang?</h4>
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        </div>
-
-                                                        <!-- Modal body -->
-                                                        <form method="post">
-                                                            <div class="modal-body">
-                                                                Apakah Anda yakin ingin menghapus <?= $namabarang; ?> ?
-                                                                <input type="hidden" name="idb" value="<?= $idb; ?>">
-                                                                <input type="hidden" name="kty" value="<?= $qty; ?>">
-                                                                <input type="hidden" name="idk" value="<?= $idk; ?>">
-                                                                <br>
-                                                                <br>
-                                                                <button type="submit" class="btn btn-danger" name="hapusbarangkeluar">Hapus</button>
-                                                            </div>
-                                                        </form>
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Hapus Barang?</h4>
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
                                                     </div>
+
+                                                    <!-- Modal body -->
+                                                    <form method="post">
+                                                        <div class="modal-body">
+                                                            Apakah Anda yakin ingin menghapus <?= $namabarang; ?> ?
+                                                            <input type="hidden" name="idb" value="<?= $idb; ?>">
+                                                            <input type="hidden" name="kty" value="<?= $qty; ?>">
+                                                            <input type="hidden" name="idk" value="<?= $idk; ?>">
+                                                            <br>
+                                                            <br>
+                                                            <button type="submit" class="btn btn-danger"
+                                                                name="hapusbarangkeluar">Hapus</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
-                                            <!-- End Modal Delete -->
+                                        </div>
+                                        <!-- End Modal Delete -->
 
                                         <?php
                                         };
@@ -228,7 +237,7 @@ require 'function.php';
                             $idbarangnya = $fetcharray['idbarang'];
                         ?>
 
-                            <option value="<?= $idbarangnya; ?>"><?= $namabarangnya; ?></option>
+                        <option value="<?= $idbarangnya; ?>"><?= $namabarangnya; ?></option>
 
                         <?php
                         }

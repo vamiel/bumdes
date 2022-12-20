@@ -8,7 +8,7 @@
 		$username = $_POST['uname'];
 		$password = password_hash($_POST['upass'], PASSWORD_DEFAULT); 
 			  
-		$tambahuser = mysqli_query($conn,"insert into login values('','$username','$password')");
+		$tambahuser = mysqli_query($conn,"INSERT INTO toko_login VALUES ('','$username','$password')");
 		if ($tambahuser){
 		echo " <div class='alert alert-success'>
 			Berhasil menambahkan staff baru.
@@ -32,7 +32,7 @@
       type="image/png" 
       href="../favicon.png">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Kelola Staff - Tokopekita</title>
+    <title>Kelola Staff - BUMDES SIMAK</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -166,7 +166,7 @@
 												<th>Alamat</th>
 											</tr></thead><tbody>
 											<?php 
-											$brgs=mysqli_query($conn,"SELECT * from login where role='Admin' order by userid ASC");
+											$brgs=mysqli_query($conn,"SELECT * FROM toko_login WHERE ROLE='Admin' ORDER BY userid ASC");
 											$no=1;
 											while($p=mysqli_fetch_array($brgs)){
 

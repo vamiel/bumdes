@@ -6,7 +6,7 @@ include '../dbconnect.php';
 if (isset($_POST['addcategory'])) {
     $namakategori = $_POST['namakategori'];
 
-    $tambahkat = mysqli_query($conn, "insert into kategori (namakategori) values ('$namakategori')");
+    $tambahkat = mysqli_query($conn, "INSERT INTO toko_kategori (namakategori) VALUES ('$namakategori')");
     if ($tambahkat) {
         echo "
 		<meta http-equiv='refresh' content='1; url= kategori.php'/>  ";
@@ -24,7 +24,7 @@ if (isset($_POST['addcategory'])) {
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="../favicon.png">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Kelola Kategori - Tokopekita</title>
+    <title>Kelola Kategori - BUMDES SIMAK</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -164,7 +164,7 @@ if (isset($_POST['addcategory'])) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $brgs = mysqli_query($conn, "SELECT * from kategori order by idkategori ASC");
+                                            $brgs = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY idkategori ASC");
                                             $no = 1;
                                             while ($p = mysqli_fetch_array($brgs)) {
                                                 $namakategori = $p['namakategori'];
@@ -177,7 +177,7 @@ if (isset($_POST['addcategory'])) {
                                                     <td><?php echo $p['namakategori'] ?></td>
                                                     <td><?php
 
-                                                        $result1 = mysqli_query($conn, "SELECT Count(idproduk) AS count FROM produk p, kategori k where p.idkategori=k.idkategori and k.idkategori='$id' order by idproduk ASC");
+                                                        $result1 = mysqli_query($conn, "SELECT Count(idproduk) AS count FROM toko_produk p, toko_kategori k WHERE p.idkategori=k.idkategori AND k.idkategori='$id' ORDER BY idproduk ASC");
                                                         $cekrow = mysqli_num_rows($result1);
                                                         $row1 = mysqli_fetch_assoc($result1);
                                                         $count = $row1['count'];
