@@ -2,7 +2,7 @@
 require 'function.php';
 
 // Cek Login
-if(isset($_POST['login'])) {
+if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -10,20 +10,20 @@ if(isset($_POST['login'])) {
     $cekdatabase = mysqli_query($conn, "SELECT * FROM login WHERE email='$email' AND password='$password'");
 
     // Menghitung jumlah data
-    $hitung = mysqli_num_rows($cekdatabase);
+    // $hitung = mysqli_num_rows($cekdatabase);
+    $hitung = (!$cekdatabase || mysqli_num_rows($cekdatabase) == 0);
 
-    if($hitung>0) {
+    if ($hitung > 0) {
         $_SESSION['log'] = 'True';
-        header('location: index.php');
+        header('location: admin.php');
     } else {
         header('location: login.php');
     }
 };
 
-if(!isset($_SESSION['log'])) {
-
+if (!isset($_SESSION['log'])) {
 } else {
-    header('location: index.php');
+    header('location: admin.php');
 }
 ?>
 
@@ -40,6 +40,16 @@ if(!isset($_SESSION['log'])) {
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous">
     </script>
+
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;500;600;700;800;900&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 200;
+        }
+
+    </style>
 </head>
 
 <body class="bg-primary">
@@ -57,31 +67,16 @@ if(!isset($_SESSION['log'])) {
                                     <form method="post">
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputEmailAddress">Email</label>
-                                            <input class="form-control py-4" name="email" id="inputEmailAddress"
-                                                type="email" placeholder="Enter email address" />
+                                            <input class="form-control py-4" name="email" id="inputEmailAddress" type="email" placeholder="Enter email address" />
                                         </div>
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputPassword">Password</label>
-                                            <input class="form-control py-4" name="password" id="inputPassword"
-                                                type="password" placeholder="Enter password" />
+                                            <input class="form-control py-4" name="password" id="inputPassword" type="password" placeholder="Enter password" />
                                         </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" id="rememberPasswordCheck"
-                                                    type="checkbox" />
-                                                <label class="custom-control-label" for="rememberPasswordCheck">Remember
-                                                    password</label>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="password.php">Forgot Password?</a>
+                                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <button class="btn btn-primary" name="login">Login</button>
                                         </div>
                                     </form>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <div class="small"><a href="register.php">Need an account? Sign up!</a></div>
                                 </div>
                             </div>
                         </div>

@@ -12,16 +12,33 @@ require 'cek.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Kelola Admin</title>
+    <title>Dashboard</title>
     <link href="css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous">
     </script>
+
+    <!-- Custom CSS -->
+    <style type="text/css">
+        .zoomable {
+            width: 100px;
+        }
+
+        .zoomable:hover {
+            transform: scale(2);
+            transition: 0.3s ease;
+        }
+
+        a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.php">BUMDes SiMak</a>
+        <a class="navbar-brand" href="../../index.html">BUMDes SiMak</a>
         <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
         </button>
@@ -34,11 +51,11 @@ require 'cek.php';
 
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link" href="../../beranda.html">
+                        <a class="nav-link" href="../../index.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             Home
                         </a>
-                        <a class="nav-link" href="index.php">
+                        <a class="nav-link" href="admin.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                             Stock Barang
                         </a>
@@ -50,7 +67,11 @@ require 'cek.php';
                             <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
                             Barang Keluar
                         </a>
-                        <a class="nav-link" href="admin.php">
+                        <a class="nav-link" href="peminjaman.php">
+                            <div class="sb-nav-link-icon"><i class="fas fa-archive"></i></div>
+                            Peminjaman Barang
+                        </a>
+                        <a class="nav-link" href="kelola_admin.php">
                             <div class="sb-nav-link-icon"><i class="fas fa-id-card"></i></div>
                             Kelola Admin
                         </a>
@@ -66,70 +87,104 @@ require 'cek.php';
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Kelola Admin</h1>
+                    <h1 class="mt-4">Stock Barang</h1>
 
                     <div class="card mb-4">
                         <div class="card-header">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                                Tambah Admin
+                                Tambah Barang
                             </button>
+                            <a href="export.php" class="btn btn-info">Export Data</a>
                         </div>
                         <div class="card-body">
+
+                            <!-- Alert -->
+                            <?php
+                            $ambildatastock = mysqli_query($conn, "SELECT * FROM pb_stock WHERE stock < 1");
+
+                            while ($fetch = mysqli_fetch_array($ambildatastock)) {
+                                $barang = $fetch['namabarang'];
+                            ?>
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <strong>Perhatian!</strong> Stock <?= $barang; ?> Telah Habis
+                                </div>
+                            <?php
+                            }
+                            ?>
+                            <!-- Alert End -->
 
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Email Admin</th>
+                                            <th>Gambar</th>
+                                            <th>Nama Barang</th>
+                                            <th>Deskripsi</th>
+                                            <th>Stock</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-
                                         <?php
-                                        $ambilsemuadataadmin = mysqli_query($conn, "SELECT * FROM pb_login");
+                                        $ambilsemuadatastock = mysqli_query($conn, "SELECT * FROM pb_stock");
                                         $i = 1;
-                                        while ($data = mysqli_fetch_array($ambilsemuadataadmin)) {
-                                            $em = $data['email'];
-                                            $iduser = $data['iduser'];
-                                            $pw = $data['password'];
-                                        ?>
+                                        while ($data = mysqli_fetch_array($ambilsemuadatastock)) {
+                                            $namabarang = $data['namabarang'];
+                                            $deskripsi = $data['deskripsi'];
+                                            $stock = $data['stock'];
+                                            $idb = $data['idbarang'];
 
+                                            // Cek ada gambar apa tidak
+                                            $gambar = $data['image'];
+                                            if ($gambar == null) {
+                                                // Jika tidak ada gambar
+                                                $img = 'No Photo';
+                                            } else {
+                                                // Jika ada gambar
+                                                $img = '<img src="images/' . $gambar . '" class="zoomable">';
+                                            }
+                                        ?>
                                             <tr>
                                                 <td><?= $i++; ?></td>
-                                                <td><?= $em; ?></td>
+                                                <td><?= $img; ?></td>
+                                                <td><strong><a href="detail.php?id=<?=$idb; ?>"><?= $namabarang; ?></strong></a></td>
+                                                <td><?= $deskripsi; ?></td>
+                                                <td><?= $stock; ?></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $iduser; ?>">
+                                                    <button type="button" class="btn btn-warning mt-2" data-toggle="modal" data-target="#edit<?= $idb; ?>">
                                                         Edit
                                                     </button>
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?= $iduser; ?>">
+                                                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#delete<?= $idb; ?>">
                                                         Delete
                                                     </button>
                                                 </td>
                                             </tr>
 
                                             <!-- Modal Edit -->
-                                            <div class="modal fade" id="edit<?= $iduser; ?>">
+                                            <div class="modal fade" id="edit<?= $idb; ?>">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
 
                                                         <!-- Modal Header -->
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Edit Admin</h4>
+                                                            <h4 class="modal-title">Edit Barang</h4>
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
 
                                                         <!-- Modal body -->
-                                                        <form method="post">
+                                                        <form method="post" enctype="multipart/form-data">
                                                             <div class="modal-body">
-                                                                <input type="email" name="emailadmin" value="<?= $em; ?>" class="form-control" placeholder="Email" required>
+                                                                <input type="text" name="namabarang" value="<?= $namabarang; ?>" class="form-control" required>
                                                                 <br>
-                                                                <input type="password" name="passwordbaru" value="<?= $pw; ?>" class="form-control" placeholder="Password">
+                                                                <input type="text" name="deskripsi" value="<?= $deskripsi; ?>" class="form-control" required>
                                                                 <br>
-                                                                <input type="hidden" name="id" value="<?= $iduser; ?>">
-                                                                <button type="submit" class="btn btn-primary" name="updatedataadmin">Submit</button>
+                                                                <input type="file" name="file" class="form-control">
+                                                                <br>
+                                                                <input type="hidden" name="idb" value="<?= $idb; ?>">
+                                                                <button type="submit" class="btn btn-primary" name="updatebarang">Submit</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -139,24 +194,24 @@ require 'cek.php';
                                             <!-- End Modal Edit -->
 
                                             <!-- Modal Delete -->
-                                            <div class="modal fade" id="delete<?= $iduser; ?>">
+                                            <div class="modal fade" id="delete<?= $idb; ?>">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
 
                                                         <!-- Modal Header -->
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Hapus Admin?</h4>
+                                                            <h4 class="modal-title">Hapus Barang?</h4>
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         </div>
 
                                                         <!-- Modal body -->
                                                         <form method="post">
                                                             <div class="modal-body">
-                                                                Apakah Anda yakin ingin menghapus <?= $em; ?> ?
-                                                                <input type="hidden" name="id" value="<?= $iduser; ?>">
+                                                                Apakah Anda yakin ingin menghapus <?= $namabarang; ?> ?
+                                                                <input type="hidden" name="idb" value="<?= $idb; ?>">
                                                                 <br>
                                                                 <br>
-                                                                <button type="submit" class="btn btn-danger" name="hapusdataadmin">Hapus</button>
+                                                                <button type="submit" class="btn btn-danger" name="hapusbarang">Hapus</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -208,18 +263,22 @@ require 'cek.php';
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Admin</h4>
+                <h4 class="modal-title">Tambah Barang</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <input type="email" name="email" placeholder="Email" class="form-control" required>
+                    <input type="text" name="namabarang" placeholder="Nama Barang" class="form-control" required>
                     <br>
-                    <input type="password" name="password" placeholder="Password" class="form-control" required>
+                    <input type="text" name="deskripsi" placeholder="Deskripsi Barang" class="form-control" required>
                     <br>
-                    <button type="submit" class="btn btn-primary" name="addadmin">Submit</button>
+                    <input type="number" name="stock" placeholder="Stock" class="form-control" required>
+                    <br>
+                    <input type="file" name="file" class="form-control">
+                    <br>
+                    <button type="submit" class="btn btn-primary" name="addnewbarang">Submit</button>
                 </div>
             </form>
         </div>

@@ -54,7 +54,7 @@ if(isset($_POST['selesai']))
       type="image/png" 
       href="../favicon.png">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Tokopekita - Pesanan <?php echo $checkdb['namalengkap']; ?></title>
+    <title>BUMDES SiMak - Pesanan <?php echo $checkdb['namalengkap']; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">

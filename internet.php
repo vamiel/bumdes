@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>BUMDes SiMak | Beranda</title>
+    <title>BUMDes SiMak | Internet</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
 
@@ -95,20 +95,20 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="logo">
-                <a href="beranda.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid" /></a>
-                <a href="beranda.html" class="logo"><img src="assets/img/logowifi.png" alt="" class="img-fluid" /></a>
+                <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid" /></a>
+                <a href="index.html" class="logo"><img src="assets/img/logowifi.png" alt="" class="img-fluid" /></a>
             </h1>
 
             <!-- Navbar Start -->
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="beranda.html">Beranda</a></li>
+                    <li><a href="index.html">Beranda</a></li>
                     <li><a href="tentang.html">Tentang</a></li>
                     <li><a href="mitra.html">Mitra</a></li>
                     <li class="dropdown">
                         <a class="active"  href="#"><span>Usaha</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a class="active"    href="internet.html">Internet Desa</a></li>
+                            <li><a class="active" href="internet.php">Internet Desa</a></li>
                             <li><a href="usaha/toko/">Toko</a></li>
                             <li><a href="usaha/peminjaman/">Peminjaman Alat Tani</a></li>
                         </ul>
@@ -209,7 +209,7 @@
                             <li style="font-size: 15px">Biaya pendaftaran + installasi Rp. 400.000</li>
                             <li style="font-size: 15px">Bebas biaya admin</li>
                         </ul>
-                        <a href="#" style="background-color: #006fbe; margin-top: 20px;" class="btn btn-primary btn-sm">Pilih Paket</a>
+                        <a href="https://wa.me/6281343400483?text=Saya%20ingin%20berlangganan%20paket%20internet%20165" target="_blank" style="background-color: #006fbe; margin-top: 20px;" class="btn btn-primary btn-sm">Pilih Paket</a>
                     </div>
                 </div>
             </div>
@@ -224,7 +224,7 @@
                             <li style="font-size: 15px">Biaya pendaftaran + installasi Rp. 400.000</li>
                             <li style="font-size: 15px">Bebas biaya admin</li>
                         </ul>
-                        <a href="#" style="background-color: #006fbe; margin-top: 20px;" class="btn btn-primary btn-sm">Pilih Paket</a>
+                        <a href="https://wa.me/6281343400483?text=Saya%20ingin%20berlangganan%20paket%20internet%20100" target="_blank" style="background-color: #006fbe; margin-top: 20px;" class="btn btn-primary btn-sm">Pilih Paket</a>
                     </div>
                 </div>
             </div>

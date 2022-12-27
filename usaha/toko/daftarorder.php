@@ -40,13 +40,12 @@ if (isset($_POST["update"])) {
 <html>
 
 <head>
-	<title>Tokopekita - Daftar Belanja</title>
+	<title>BUMDES SiMak - Daftar Belanja</title>
 	<!-- for-mobile-apps -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Tokopekita, Richard's Lab" />
 	<script type="application/x-javascript">
-		addEventListener("load", function() {
+		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
 
@@ -68,14 +67,18 @@ if (isset($_POST["update"])) {
 	<!-- js -->
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<!-- //js -->
-	<link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
-	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<link
+		href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
+		rel='stylesheet' type='text/css'>
+	<link
+		href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+		rel='stylesheet' type='text/css'>
 	<!-- start-smoth-scrolling -->
 	<script type="text/javascript" src="js/move-top.js"></script>
 	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			$(".scroll").click(function(event) {
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
 				event.preventDefault();
 				$('html,body').animate({
 					scrollTop: $(this.hash).offset().top
@@ -121,7 +124,8 @@ if (isset($_POST["update"])) {
 				</ul>
 			</div>
 			<div class="product_list_header">
-				<a href="cart.php"><button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+				<a href="cart.php"><button class="w3view-cart" type="submit" name="submit" value=""><i
+							class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 				</a>
 			</div>
 			<div class="clearfix"> </div>
@@ -136,7 +140,7 @@ if (isset($_POST["update"])) {
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="index.php">Tokopekita</a></h1>
+				<h1><a href="index.php">BUMDES SiMak</a></h1>
 			</div>
 			<div class="w3l_search">
 				<form action="search.php" method="post">
@@ -158,7 +162,8 @@ if (isset($_POST["update"])) {
 			<nav class="navbar navbar-default">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header nav_2">
-					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+						data-target="#bs-megadropdown-tabs">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -167,11 +172,12 @@ if (isset($_POST["update"])) {
 				</div>
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="../../beranda.html" class="act">Home</a></li>
+						<li class="active"><a href="../../index.html" class="act">BUMDES SiMak</a></li>
 						<li class="active"><a href="index.php" class="act">Home</a></li>
 						<!-- Mega Menu -->
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b
+									class="caret"></b></a>
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="row">
 									<div class="multi-gd-img">
@@ -183,7 +189,9 @@ if (isset($_POST["update"])) {
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>
-												<li><a href="kategori.php?idkategori=<?php echo $p['idkategori'] ?>"><?php echo $p['namakategori'] ?></a></li>
+											<li><a
+													href="kategori.php?idkategori=<?php echo $p['idkategori'] ?>"><?php echo $p['namakategori'] ?></a>
+											</li>
 
 											<?php
 											}
@@ -236,15 +244,16 @@ if (isset($_POST["update"])) {
 					while ($b = mysqli_fetch_array($brg)) {
 
 					?>
-						<tr class="rem1">
-							<form method="post">
-								<td class="invert"><?php echo $no++ ?></td>
-								<td class="invert"><a href="order.php?id=<?php echo $b['orderid'] ?>"><?php echo $b['orderid'] ?></a></td>
+					<tr class="rem1">
+						<form method="post">
+							<td class="invert"><?php echo $no++ ?></td>
+							<td class="invert"><a
+									href="order.php?id=<?php echo $b['orderid'] ?>"><?php echo $b['orderid'] ?></a></td>
 
-								<td class="invert"><?php echo $b['tglorder'] ?></td>
-								<td class="invert">
+							<td class="invert"><?php echo $b['tglorder'] ?></td>
+							<td class="invert">
 
-									Rp<?php $ongkir = 10000;
+								Rp<?php $ongkir = 10000;
 										$ordid = $b['orderid'];
 										$result1 = mysqli_query($conn, "SELECT SUM(qty*hargaafter)+$ongkir AS count FROM toko_detailorder d, toko_produk p WHERE d.orderid='$ordid' AND p.idproduk=d.idproduk ORDER BY d.idproduk ASC");
 										$cekrow = mysqli_num_rows($result1);
@@ -256,11 +265,11 @@ if (isset($_POST["update"])) {
 											echo 'No data';
 										} ?>
 
-								</td>
+							</td>
 
-								<td class="invert">
-									<div class="rem">
-										<?php
+							<td class="invert">
+								<div class="rem">
+									<?php
 										if ($b['status'] == 'Payment') {
 											echo '
 								<a href="konfirmasi.php?id=' . $b['orderid'] . '" class="form-control btn-primary">
@@ -280,12 +289,12 @@ if (isset($_POST["update"])) {
 										}
 
 										?>
-							</form>
+						</form>
 			</div>
 			<script>
-				$(document).ready(function(c) {
-					$('.close1').on('click', function(c) {
-						$('.rem1').fadeOut('slow', function(c) {
+				$(document).ready(function (c) {
+					$('.close1').on('click', function (c) {
+						$('.rem1').fadeOut('slow', function (c) {
 							$('.rem1').remove();
 						});
 					});
@@ -293,26 +302,26 @@ if (isset($_POST["update"])) {
 			</script>
 			</td>
 			</tr>
-		<?php
+			<?php
 					}
 		?>
 
-		<!--quantity-->
-		<script>
-			$('.value-plus').on('click', function() {
-				var divUpd = $(this).parent().find('.value'),
-					newVal = parseInt(divUpd.text(), 10) + 1;
-				divUpd.text(newVal);
-			});
+			<!--quantity-->
+			<script>
+				$('.value-plus').on('click', function () {
+					var divUpd = $(this).parent().find('.value'),
+						newVal = parseInt(divUpd.text(), 10) + 1;
+					divUpd.text(newVal);
+				});
 
-			$('.value-minus').on('click', function() {
-				var divUpd = $(this).parent().find('.value'),
-					newVal = parseInt(divUpd.text(), 10) - 1;
-				if (newVal >= 1) divUpd.text(newVal);
-			});
-		</script>
-		<!--quantity-->
-		</table>
+				$('.value-minus').on('click', function () {
+					var divUpd = $(this).parent().find('.value'),
+						newVal = parseInt(divUpd.text(), 10) - 1;
+					if (newVal >= 1) divUpd.text(newVal);
+				});
+			</script>
+			<!--quantity-->
+			</table>
 		</div>
 	</div>
 	</div>
@@ -325,17 +334,10 @@ if (isset($_POST["update"])) {
 					<h3>Hubungi Kami</h3>
 
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Richard's Lab, DKI Jakarta.</li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">info@email</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 8113 2322</li>
-					</ul>
-				</div>
-				<div class="col-md-3 w3_footer_grid">
-					<h3>Tentang Kami</h3>
-					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">How To</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">FAQ</a></li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Nama, Lokasi</li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a
+								href="mailto:info@email">info@email</a></li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 0000 000</li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
@@ -345,7 +347,7 @@ if (isset($_POST["update"])) {
 		<div class="footer-copy">
 
 			<div class="container">
-				<p>© 2020 Richard's Lab. All rights reserved</p>
+				<p>© 2022 One Server. All rights reserved</p>
 			</div>
 		</div>
 
@@ -354,7 +356,8 @@ if (isset($_POST["update"])) {
 		<div class="container">
 			<div class="w3layouts-foot">
 				<ul>
-					<li><a href="#" class="w3_agile_instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					<li><a href="#" class="w3_agile_instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+					</li>
 					<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 					<li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 				</ul>
@@ -372,7 +375,7 @@ if (isset($_POST["update"])) {
 	<!-- top-header and slider -->
 	<!-- here stars scrolling icon -->
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(document).ready(function () {
 
 			var defaults = {
 				containerID: 'toTop', // fading element id
@@ -394,7 +397,7 @@ if (isset($_POST["update"])) {
 	<script src="js/skdslider.min.js"></script>
 	<link href="css/skdslider.css" rel="stylesheet">
 	<script type="text/javascript">
-		jQuery(document).ready(function() {
+		jQuery(document).ready(function () {
 			jQuery('#demo1').skdslider({
 				'delay': 5000,
 				'animationSpeed': 2000,
@@ -404,7 +407,7 @@ if (isset($_POST["update"])) {
 				'animationType': 'fading'
 			});
 
-			jQuery('#responsive').change(function() {
+			jQuery('#responsive').change(function () {
 				$('#responsive_wrapper').width(jQuery(this).val());
 			});
 

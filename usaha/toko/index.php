@@ -13,7 +13,7 @@ include 'dbconnect.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<script type="application/x-javascript">
-		addEventListener("load", function() {
+		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
 
@@ -35,14 +35,18 @@ include 'dbconnect.php';
 	<!-- js -->
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<!-- //js -->
-	<link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
-	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<link
+		href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
+		rel='stylesheet' type='text/css'>
+	<link
+		href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+		rel='stylesheet' type='text/css'>
 	<!-- start-smoth-scrolling -->
 	<script type="text/javascript" src="js/move-top.js"></script>
 	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript">
-		jQuery(document).ready(function($) {
-			$(".scroll").click(function(event) {
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
 				event.preventDefault();
 				$('html,body').animate({
 					scrollTop: $(this.hash).offset().top
@@ -88,7 +92,8 @@ include 'dbconnect.php';
 				</ul>
 			</div>
 			<div class="product_list_header">
-				<a href="cart.php"><button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+				<a href="cart.php"><button class="w3view-cart" type="submit" name="submit" value=""><i
+							class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 				</a>
 			</div>
 			<div class="clearfix"> </div>
@@ -125,7 +130,8 @@ include 'dbconnect.php';
 			<nav class="navbar navbar-default">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header nav_2">
-					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+						data-target="#bs-megadropdown-tabs">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -134,11 +140,11 @@ include 'dbconnect.php';
 				</div>
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="../../beranda.html" class="act">BUMDes SiMak</a></li>
-						<li class="active"><a href="index.php" class="act">Home</a></li>
-						<!-- Mega Menu -->
+						<li class="active"><a href="../../index.html" class="act">BUMDes SiMak</a></li>		
+						<li class="active"><a href="index.php" class="act">Home</a></li>				<!-- Mega Menu -->
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b
+									class="caret"></b></a>
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="row">
 									<div class="multi-gd-img">
@@ -150,7 +156,9 @@ include 'dbconnect.php';
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>
-												<li><a href="kategori.php?idkategori=<?php echo $p['idkategori'] ?>"><?php echo $p['namakategori'] ?></a></li>
+											<li><a
+													href="kategori.php?idkategori=<?php echo $p['idkategori'] ?>"><?php echo $p['namakategori'] ?></a>
+											</li>
 
 											<?php
 											}
@@ -192,7 +200,8 @@ include 'dbconnect.php';
 			<div class="grid_3 grid_5">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					<div id="myTabContent" class="tab-content">
-						<div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
+						<div role="tabpanel" class="tab-pane fade in active" id="expeditions"
+							aria-labelledby="expeditions-tab">
 							<div class="agile-tp">
 								<h5>Penawaran Terbaik Minggu Ini
 									<?php
@@ -211,20 +220,22 @@ include 'dbconnect.php';
 								while ($p = mysqli_fetch_array($brgs)) {
 
 								?>
-									<div class="col-md-4 top_brand_left" style="margin-bottom: 2%;">
-										<div class="hover14 column">
-											<div class="agile_top_brand_left_grid">
-												<div class="agile_top_brand_left_grid_pos">
-													<img src="images/offer.png" alt=" " class="img-responsive" />
-												</div>
-												<div class="agile_top_brand_left_grid1">
-													<figure>
-														<div class="snipcart-item block">
-															<div class="snipcart-thumb">
-																<a href="product.php?idproduk=<?php echo $p['idproduk'] ?>"><img title=" " alt=" " src="<?php echo $p['gambar'] ?>" width="200px" height="200px" /></a>
-																<p><?php echo $p['namaproduk'] ?></p>
-																<div class="stars">
-																	<?php
+								<div class="col-md-4 top_brand_left" style="margin-bottom: 2%;">
+									<div class="hover14 column">
+										<div class="agile_top_brand_left_grid">
+											<div class="agile_top_brand_left_grid_pos">
+												<img src="images/offer.png" alt=" " class="img-responsive" />
+											</div>
+											<div class="agile_top_brand_left_grid1">
+												<figure>
+													<div class="snipcart-item block">
+														<div class="snipcart-thumb">
+															<a href="product.php?idproduk=<?php echo $p['idproduk'] ?>"><img
+																	title=" " alt=" " src="<?php echo $p['gambar'] ?>"
+																	width="200px" height="200px" /></a>
+															<p><?php echo $p['namaproduk'] ?></p>
+															<div class="stars">
+																<?php
 																	$bintang = '<i class="fa fa-star blue-star" aria-hidden="true"></i>';
 																	$rate = $p['rate'];
 
@@ -232,20 +243,25 @@ include 'dbconnect.php';
 																		echo '<i class="fa fa-star blue-star" aria-hidden="true"></i>';
 																	};
 																	?>
-																</div>
-																<h4>Rp<?php echo number_format($p['hargaafter']) ?> <span>Rp<?php echo number_format($p['hargabefore']) ?></span></h4>
 															</div>
-															<div class="snipcart-details top_brand_home_details">
-																<fieldset>
-																	<a href="product.php?idproduk=<?php echo $p['idproduk'] ?>"><input type="submit" class="button" value="Lihat Produk" /></a>
-																</fieldset>
-															</div>
+															<h4>Rp<?php echo number_format($p['hargaafter']) ?>
+																<span>Rp<?php echo number_format($p['hargabefore']) ?></span>
+															</h4>
 														</div>
-													</figure>
-												</div>
+														<div class="snipcart-details top_brand_home_details">
+															<fieldset>
+																<a
+																	href="product.php?idproduk=<?php echo $p['idproduk'] ?>"><input
+																		type="submit" class="button"
+																		value="Lihat Produk" /></a>
+															</fieldset>
+														</div>
+													</div>
+												</figure>
 											</div>
 										</div>
 									</div>
+								</div>
 								<?php
 								}
 								?>
@@ -275,17 +291,10 @@ include 'dbconnect.php';
 					<h3>Hubungi Kami</h3>
 
 					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Richard's Lab, DKI Jakarta.</li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">info@email</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 8113 2322</li>
-					</ul>
-				</div>
-				<div class="col-md-3 w3_footer_grid">
-					<h3>Tentang Kami</h3>
-					<ul class="info">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">How To</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">FAQ</a></li>
+						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Nama, Lokasi</li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a
+								href="mailto:info@email">info@email</a></li>
+						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 0000 000</li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
@@ -295,7 +304,7 @@ include 'dbconnect.php';
 		<div class="footer-copy">
 
 			<div class="container">
-				<p>© 2020 Richard's Lab. All rights reserved</p>
+				<p>© 2022 One Server. All rights reserved</p>
 			</div>
 		</div>
 
@@ -304,7 +313,8 @@ include 'dbconnect.php';
 		<div class="container">
 			<div class="w3layouts-foot">
 				<ul>
-					<li><a href="#" class="w3_agile_instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					<li><a href="#" class="w3_agile_instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+					</li>
 					<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 					<li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
 				</ul>
@@ -322,7 +332,7 @@ include 'dbconnect.php';
 	<!-- top-header and slider -->
 	<!-- here stars scrolling icon -->
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(document).ready(function () {
 
 			var defaults = {
 				containerID: 'toTop', // fading element id
@@ -344,7 +354,7 @@ include 'dbconnect.php';
 	<script src="js/skdslider.min.js"></script>
 	<link href="css/skdslider.css" rel="stylesheet">
 	<script type="text/javascript">
-		jQuery(document).ready(function() {
+		jQuery(document).ready(function () {
 			jQuery('#demo1').skdslider({
 				'delay': 5000,
 				'animationSpeed': 2000,
@@ -354,7 +364,7 @@ include 'dbconnect.php';
 				'animationType': 'fading'
 			});
 
-			jQuery('#responsive').change(function() {
+			jQuery('#responsive').change(function () {
 				$('#responsive_wrapper').width(jQuery(this).val());
 			});
 
