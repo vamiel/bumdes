@@ -56,6 +56,21 @@ if (isset($_POST["update"])) {
 		}
 	</script>
 
+	<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet" />
+
+
+	<style type="text/css">
+		*,
+		html,
+		body,
+		.ini {
+			font-family: 'Poppins', sans-serif;
+		}
+	</style>
+
 	<!-- Favicons -->
 	<link href="../../assets/img/favicon_io/favicon.ico" rel="icon">
 	<link href="../../assets/img/favicon_io/favicon.ico" rel="apple-touch-icon">
@@ -204,8 +219,6 @@ if (isset($_POST["update"])) {
 								</div>
 							</ul>
 						</li>
-						<li><a href="cart.php">Keranjang Saya</a></li>
-						<li><a href="daftarorder.php">Daftar Order</a></li>
 					</ul>
 				</div>
 			</nav>

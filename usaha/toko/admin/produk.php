@@ -7,8 +7,6 @@ if (isset($_POST["addproduct"])) {
 	$namaproduk = $_POST['namaproduk'];
 	$idkategori = $_POST['idkategori'];
 	$deskripsi = $_POST['deskripsi'];
-	$rate = $_POST['rate'];
-	$hargabefore = $_POST['hargabefore'];
 	$hargaafter = $_POST['hargaafter'];
 
 	$nama_file = $_FILES['uploadgambar']['name'];
@@ -25,8 +23,8 @@ if (isset($_POST["addproduct"])) {
 		if ($ukuran_file <= 5000000) {
 			if (move_uploaded_file($tmp_file, $path)) {
 
-				$query = "INSERT INTO toko_produk (idkategori, namaproduk, gambar, deskripsi, rate, hargabefore, hargaafter)
-			  VALUES ('$idkategori','$namaproduk','$pathdb','$deskripsi','$rate','$hargabefore','$hargaafter')";
+				$query = "INSERT INTO toko_produk (idkategori, namaproduk, gambar, deskripsi, hargaafter)
+			  VALUES ('$idkategori','$namaproduk','$pathdb','$deskripsi','$hargaafter')";
 				$sql = mysqli_query($conn, $query); // Eksekusi/ Jalankan query dari variabel $query
 
 				if ($sql) {
@@ -108,7 +106,6 @@ if (isset($_POST["addproduct"])) {
 				<div class="menu-inner">
 					<nav>
 						<ul class="metismenu" id="menu">
-							<li><a href="index.php"><span>Home</span></a></li>
 							<li><a href="../"><span>Kembali ke Toko</span></a></li>
 							<li>
 								<a href="manageorder.php"><i class="ti-dashboard"></i><span>Kelola Pesanan</span></a>
@@ -119,7 +116,6 @@ if (isset($_POST["addproduct"])) {
 								<ul class="collapse">
 									<li><a href="kategori.php">Kategori</a></li>
 									<li class="active"><a href="produk.php">Produk</a></li>
-									<li><a href="pembayaran.php">Metode Pembayaran</a></li>
 								</ul>
 							</li>
 							<li><a href="customer.php"><span>Kelola Pelanggan</span></a></li>
@@ -199,8 +195,6 @@ if (isset($_POST["addproduct"])) {
 												<th>Kategori</th>
 												<th>Harga Diskon</th>
 												<th>Deskripsi</th>
-												<th>Rate</th>
-												<th>Harga Awal</th>
 												<th>Tanggal</th>
 												<th>Hapus Produk</th>
 											</tr>
@@ -221,8 +215,6 @@ if (isset($_POST["addproduct"])) {
 													<td><?php echo $p['namakategori'] ?></td>
 													<td><?php echo $p['hargaafter'] ?></td>
 													<td><?php echo $p['deskripsi'] ?></td>
-													<td><?php echo $p['rate'] ?></td>
-													<td><?php echo $p['hargabefore'] ?></td>
 													<td><?php echo $p['tgldibuat'] ?></td>
 													<td>
 														<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?= $idp; ?>">
@@ -319,15 +311,7 @@ if (isset($_POST["addproduct"])) {
 							<input name="deskripsi" type="text" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Rating (1-5)</label>
-							<input name="rate" type="number" class="form-control" min="1" max="5" required>
-						</div>
-						<div class="form-group">
-							<label>Harga Sebelum Diskon</label>
-							<input name="hargabefore" type="number" class="form-control">
-						</div>
-						<div class="form-group">
-							<label>Harga Setelah Diskon</label>
+							<label>Harga</label>
 							<input name="hargaafter" type="number" class="form-control">
 						</div>
 						<div class="form-group">

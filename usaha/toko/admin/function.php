@@ -13,17 +13,6 @@ if(isset($_POST['hapuskategori'])) {
     }
 };
 
-// Menghapus Metode Pembayaran
-if(isset($_POST['hapusmetode'])) {
-    $idm = $_POST['idm'];
-    $hapusm = mysqli_query($conn, "DELETE FROM toko_pembayaran WHERE no='$idm'");
-    if($hapusm) {
-        header('location: pembayaran.php');
-    } else {
-        echo 'Gagal!';
-        header('location: pembayaran.php');
-    }
-};
 
 // Menghapus Produk
 if(isset($_POST['hapusproduk'])) {

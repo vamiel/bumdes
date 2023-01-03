@@ -14,9 +14,7 @@
     <link href="assets/img/favicon_io/favicon.ico" rel="apple-touch-icon" />
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -106,7 +104,7 @@
                     <li><a href="tentang.html">Tentang</a></li>
                     <li><a href="mitra.html">Mitra</a></li>
                     <li class="dropdown">
-                        <a class="active"  href="#"><span>Usaha</span> <i class="bi bi-chevron-down"></i></a>
+                        <a class="active" href="#"><span>Usaha</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a class="active" href="internet.php">Internet Desa</a></li>
                             <li><a href="usaha/toko/">Toko</a></li>
@@ -130,8 +128,7 @@
                 <p style="color: white">BUMDES PAJERUKAN</p>
             </div>
             <div class="image-right col-md-6">
-                <img class="responsive img-fluid" align="right" src="assets/img/logo-wifi2c.png"
-                    alt="Placeholder image">
+                <img class="responsive img-fluid" align="right" src="assets/img/logo-wifi2c.png" alt="Placeholder image">
             </div>
         </div>
     </div>
@@ -256,8 +253,7 @@
         </footer>
         <!-- End Footer -->
 
-        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-                class="bi bi-arrow-up-short"></i></a>
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
         <!-- Vendor JS Files -->
         <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

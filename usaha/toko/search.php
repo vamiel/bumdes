@@ -170,8 +170,6 @@ $s = $_POST['Search'];
 								</div>
 							</ul>
 						</li>
-						<li><a href="cart.php">Keranjang Saya</a></li>
-						<li><a href="konfirmasi.php">Daftar Order</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -241,7 +239,6 @@ $s = $_POST['Search'];
 														height="200px"></a>
 												<p><?php echo $p['namaproduk'] ?></p>
 												<h4>Rp<?php echo number_format($p['hargaafter']) ?>
-													<span>Rp<?php echo number_format($p['hargabefore']) ?></span></h4>
 											</div>
 											<div class="snipcart-details top_brand_home_details">
 												<fieldset>

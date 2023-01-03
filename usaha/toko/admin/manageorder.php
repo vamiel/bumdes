@@ -59,7 +59,6 @@
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-							<li><a href="index.php"><span>Home</span></a></li>
 							<li><a href="../"><span>Kembali ke Toko</span></a></li>
 							<li class="active">
                                 <a href="manageorder.php"><i class="ti-dashboard"></i><span>Kelola Pesanan</span></a>
@@ -70,7 +69,6 @@
                                 <ul class="collapse">
                                     <li><a href="kategori.php">Kategori</a></li>
                                     <li><a href="produk.php">Produk</a></li>
-									<li><a href="pembayaran.php">Metode Pembayaran</a></li>
                                 </ul>
                             </li>
 							<li><a href="customer.php"><span>Kelola Pelanggan</span></a></li>
@@ -161,7 +159,7 @@
 													<td><?php echo $p['tglorder'] ?></td>
 													<td>Rp<?php 
 												
-												$result1 = mysqli_query($conn,"SELECT SUM(d.qty*p.hargaafter) AS count FROM toko_detailorder d, toko_produk p WHERE orderid='$orderids' AND p.idproduk=d.idproduk ORDER BY d.idproduk ASC");
+												$result1 = mysqli_query($conn,"SELECT SUM(d.qty*p.harga) AS count FROM toko_detailorder d, toko_produk p WHERE orderid='$orderids' AND p.idproduk=d.idproduk ORDER BY d.idproduk ASC");
 												$cekrow = mysqli_num_rows($result1);
 												$row1 = mysqli_fetch_assoc($result1);
 												$count = $row1['count'];
@@ -171,11 +169,6 @@
 														echo 'No data';
 													}?></td>
 													<td><?php 
-													
-													//echo $p['status'] 
-													$orders = $p['orderid'];
-													$cekkonfirmasipembayaran = mysqli_query($conn,"SELECT * FROM toko_konfirmasi WHERE orderid='$orders'");
-													$cekroww = mysqli_num_rows($cekkonfirmasipembayaran);
 													
 													if($cekroww > 0){
 														echo 'Confirmed';

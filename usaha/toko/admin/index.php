@@ -62,10 +62,8 @@
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-							<li class="active"><a href="index.php"><span>Home</span></a></li>
 							<li><a href="../"><span>Kembali ke Toko</span></a></li>
 							<li>
-                                <a href="manageorder.php"><i class="ti-dashboard"></i><span>Kelola Pesanan</span></a>
                             </li>
 							<li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout"></i><span>Kelola Toko
@@ -73,7 +71,6 @@
                                 <ul class="collapse">
                                     <li><a href="kategori.php">Kategori</a></li>
                                     <li><a href="produk.php">Produk</a></li>
-									<li><a href="pembayaran.php">Metode Pembayaran</a></li>
                                 </ul>
                             </li>
 							<li><a href="customer.php"><span>Kelola Pelanggan</span></a></li>
@@ -151,62 +148,6 @@
             
             <!-- page title area end -->
             <div class="main-content-inner">
-			
-                
-                <div class="sales-report-area mt-5 mb-5">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="single-report mb-xs-30">
-                                <div class="s-report-inner pr--20 pt--30 mb-3">
-                                    <div class="icon"><i class="fa fa-user"></i></div>
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Pelanggan</h4>
-                                    </div>
-                                    <div class="d-flex justify-content-between pb-2">
-                                        <h1><?php echo $itungcust3 ?></h1>
-                                    </div>
-									</div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4">
-                            <div class="single-report">
-                                <div class="s-report-inner pr--20 pt--30 mb-3">
-                                    <div class="icon"><i class="fa fa-book"></i></div>
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Pesanan</h4>
-                                    </div>
-                                    <div class="d-flex justify-content-between pb-2">
-                                        <h1><?php echo $itungorder3 ?></h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-						<div class="col-md-4">
-                            <div class="single-report mb-xs-30">
-                                <div class="s-report-inner pr--20 pt--30 mb-3">
-                                    <div class="icon"><i class="fa fa-link"></i></div>
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <h4 class="header-title mb-0">Konfirmasi Pembayaran</h4>
-                                    </div>
-                                    <div class="d-flex justify-content-between pb-2">
-                                        <h1><?php echo $itungtrans3 ?></h1>
-                                    </div>
-									<!--
-									<button type="button" class="<?php 
-									if($itungtrans3==0){
-										echo 'btn btn-secondary btn-block';
-									} else {
-										echo 'btn btn-primary btn-block';
-									}
-									?>
-									">Lihat Transaksi</button>
-									-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 
                 
                 <!-- overview area end -->
@@ -222,7 +163,7 @@
                                     Anda masuk sebagai <strong><?php echo $_SESSION['name'] ?></strong>
 									<br>
 									<p>Pada halaman admin, Anda dapat menambah kategori produk, mengelola produk, 
-									mengelola user dan admin, melihat konfirmasi pembayaran</p>
+									mengelola user dan admin</p>
                                 </div>
                             </div>
                         </div>

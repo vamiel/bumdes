@@ -70,7 +70,6 @@ if (isset($_POST['addcategory'])) {
                 <div class="menu-inner">
                     <nav>
                         <ul class="metismenu" id="menu">
-                            <li><a href="index.php"><span>Home</span></a></li>
                             <li><a href="../"><span>Kembali ke Toko</span></a></li>
                             <li>
                                 <a href="manageorder.php"><i class="ti-dashboard"></i><span>Kelola Pesanan</span></a>
@@ -81,7 +80,6 @@ if (isset($_POST['addcategory'])) {
                                 <ul class="collapse">
                                     <li class="active"><a href="kategori.php">Kategori</a></li>
                                     <li><a href="produk.php">Produk</a></li>
-                                    <li><a href="pembayaran.php">Metode Pembayaran</a></li>
                                 </ul>
                             </li>
                             <li><a href="customer.php"><span>Kelola Pelanggan</span></a></li>

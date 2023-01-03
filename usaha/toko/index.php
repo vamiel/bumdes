@@ -12,20 +12,35 @@ include 'dbconnect.php';
 	<!-- for-mobile-apps -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet" />
+
+
+	<style type="text/css">
+		*,
+		html,
+		body,
+		.ini {
+			font-family: 'Poppins', sans-serif;
+		}
+	</style>
+
 	<script type="application/x-javascript">
 		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+				setTimeout(hideURLbar, 0);
+			}
+
+			, false);
 
 		function hideURLbar() {
 			window.scrollTo(0, 1);
 		}
 	</script>
-
 	<!-- Favicons -->
 	<link href="../../assets/img/favicon_io/favicon.ico" rel="icon">
 	<link href="../../assets/img/favicon_io/favicon.ico" rel="apple-touch-icon">
-
 	<!-- //for-mobile-apps -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -46,13 +61,20 @@ include 'dbconnect.php';
 	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript">
 		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
-				event.preventDefault();
-				$('html,body').animate({
-					scrollTop: $(this.hash).offset().top
-				}, 1000);
-			});
-		});
+				$(".scroll").click(function (event) {
+						event.preventDefault();
+
+						$('html,body').animate({
+								scrollTop: $(this.hash).offset().top
+							}
+
+							, 1000);
+					}
+
+				);
+			}
+
+		);
 	</script>
 	<!-- start-smoth-scrolling -->
 </head>
@@ -61,12 +83,8 @@ include 'dbconnect.php';
 	<!-- header -->
 	<div class="agileits_header">
 		<div class="container">
-			<div class="w3l_offers">
-				<p>DAPATKAN PENAWARAN MENARIK KHUSUS HARI INI, BELANJA SEKARANG!</p>
-			</div>
 			<div class="agile-login">
-				<ul>
-					<?php
+				<ul><?php
 					if (!isset($_SESSION['log'])) {
 						echo '
 					<li><a href="registered.php"> Daftar</a></li>
@@ -81,25 +99,17 @@ include 'dbconnect.php';
 					';
 						} else {
 							echo '
-					<li style="color:white">Halo, ' . $_SESSION["name"] . '
+					<li style="color:white; margin-right: 50px;">Halo, ' . $_SESSION["name"] . '
 					<li><a href="admin">Admin Panel</a></li>
 					<li><a href="logout.php">Keluar?</a></li>
 					';
 						};
 					}
-					?>
-
-				</ul>
+					?></ul>
 			</div>
-			<div class="product_list_header">
-				<a href="cart.php"><button class="w3view-cart" type="submit" name="submit" value=""><i
-							class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-				</a>
-			</div>
-			<div class="clearfix"> </div>
+			<div class="clearfix"></div>
 		</div>
 	</div>
-
 	<div class="logo_products">
 		<div class="container">
 			<div class="w3ls_logo_products_left1">
@@ -111,16 +121,13 @@ include 'dbconnect.php';
 				<h1><a href="index.php">BUMDes SiMak</a></h1>
 			</div>
 			<div class="w3l_search">
-				<form action="search.php" method="post">
-					<input type="search" name="Search" placeholder="Cari produk...">
-					<button type="submit" class="btn btn-default search" aria-label="Left Align">
-						<i class="fa fa-search" aria-hidden="true"> </i>
-					</button>
+				<form action="search.php" method="post"><input type="search" name="Search"
+						placeholder="Cari produk..."><button type="submit" class="btn btn-default search"
+						aria-label="Left Align"><i class="fa fa-search" aria-hidden="true"></i></button>
 					<div class="clearfix"></div>
 				</form>
 			</div>
-
-			<div class="clearfix"> </div>
+			<div class="clearfix"></div>
 		</div>
 	</div>
 	<!-- //header -->
@@ -129,248 +136,213 @@ include 'dbconnect.php';
 		<div class="container">
 			<nav class="navbar navbar-default">
 				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header nav_2">
-					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-						data-target="#bs-megadropdown-tabs">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
+				<div class="navbar-header nav_2"><button type="button" class="navbar-toggle collapsed navbar-toggle1"
+						data-toggle="collapse" data-target="#bs-megadropdown-tabs"><span class="sr-only">Toggle
+							navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+							class="icon-bar"></span></button></div>
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="../../index.html" class="act">BUMDes SiMak</a></li>		
-						<li class="active"><a href="index.php" class="act">Home</a></li>				<!-- Mega Menu -->
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b
-									class="caret"></b></a>
-							<ul class="dropdown-menu multi-column columns-3">
-								<div class="row">
-									<div class="multi-gd-img">
-										<ul class="multi-column-dropdown">
-											<h6>Kategori</h6>
+						<li class="active"><a href="../../index.html" class="act">BUMDes SiMak</a></li>
+						<li class="active"><a href="index.php" class="act">Home</a></li>
+						<!-- Mega Menu -->
+							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori
+									Produk<b class="caret"></b></a>
+								<ul class="dropdown-menu multi-column columns-3">
+									<div class="row">
+										<div class="multi-gd-img">
+											<ul class="multi-column-dropdown">
+												<h6>Kategori</h6>
+												<?php
+															$kat = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY idkategori ASC");
+															while ($p = mysqli_fetch_array($kat)) {
 
-											<?php
-											$kat = mysqli_query($conn, "SELECT * FROM toko_kategori ORDER BY idkategori ASC");
-											while ($p = mysqli_fetch_array($kat)) {
-
-											?>
-											<li><a
-													href="kategori.php?idkategori=<?php echo $p['idkategori'] ?>"><?php echo $p['namakategori'] ?></a>
-											</li>
-
-											<?php
-											}
-											?>
-										</ul>
+															?>
+												<li><a
+														href="kategori.php?idkategori=<?php echo $p['idkategori'] ?>"><?php echo $p['namakategori'] ?></a>
+												</li><?php
+																	}
+																		?>
+											</ul>
+										</div>
 									</div>
-
-								</div>
-							</ul>
-						</li>
-						<li><a href="cart.php">Keranjang Saya</a></li>
-						<li><a href="daftarorder.php">Daftar Order</a></li>
+								</ul>
+							</li>
 					</ul>
 				</div>
 			</nav>
 		</div>
 	</div>
-
 	<!-- //navigation -->
-	<!-- main-slider -->
-	<ul id="demo1">
-		<li>
-			<img src="images/slide1.jpg" alt="" />
-		</li>
-		<li>
-			<img src="images/slide2.jpg" alt="" />
-		</li>
+		<!-- main-slider -->
+			<ul id="demo1">
+				<li><img src="images/slide1.jpg" alt="" /></li>
+				<li><img src="images/slide2.jpg" alt="" /></li>
+				<li><img src="images/slide3.jpg" alt="" /></li>
+			</ul>
+			<!-- //main-slider -->
+				<!-- //top-header and slider -->
+					<!-- top-brands -->
+						<div class="top-brands">
+							<div class="container">
+								<h2>Produk Kami</h2>
+								<div class="grid_3 grid_5">
+									<div class="bs-example bs-example-tabs" role="tabpanel"
+										data-example-id="togglable-tabs">
+										<div id="myTabContent" class="tab-content">
+											<div role="tabpanel" class="tab-pane fade in active" id="expeditions"
+												aria-labelledby="expeditions-tab">
+												<div class="agile_top_brands_grids"><?php
+																							$brgs = mysqli_query($conn, "SELECT * FROM toko_produk ORDER BY idproduk ASC");
+																							$no = 1;
+																							while ($p = mysqli_fetch_array($brgs)) {
 
-		<li>
-			<img src="images/slide3.jpg" alt="" />
-		</li>
-	</ul>
-	<!-- //main-slider -->
-	<!-- //top-header and slider -->
-	<!-- top-brands -->
-	<div class="top-brands">
-		<div class="container">
-			<h2>Produk Kami</h2>
-			<div class="grid_3 grid_5">
-				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-					<div id="myTabContent" class="tab-content">
-						<div role="tabpanel" class="tab-pane fade in active" id="expeditions"
-							aria-labelledby="expeditions-tab">
-							<div class="agile-tp">
-								<h5>Penawaran Terbaik Minggu Ini
-									<?php
-									if (!isset($_SESSION['name'])) {
-									} else {
-										echo 'Untukmu, ' . $_SESSION['name'] . '!';
-									}
-									?>
-								</h5>
-							</div>
-							<div class="agile_top_brands_grids">
-
-								<?php
-								$brgs = mysqli_query($conn, "SELECT * FROM toko_produk ORDER BY idproduk ASC");
-								$no = 1;
-								while ($p = mysqli_fetch_array($brgs)) {
-
-								?>
-								<div class="col-md-4 top_brand_left" style="margin-bottom: 2%;">
-									<div class="hover14 column">
-										<div class="agile_top_brand_left_grid">
-											<div class="agile_top_brand_left_grid_pos">
-												<img src="images/offer.png" alt=" " class="img-responsive" />
-											</div>
-											<div class="agile_top_brand_left_grid1">
-												<figure>
-													<div class="snipcart-item block">
-														<div class="snipcart-thumb">
-															<a href="product.php?idproduk=<?php echo $p['idproduk'] ?>"><img
-																	title=" " alt=" " src="<?php echo $p['gambar'] ?>"
-																	width="200px" height="200px" /></a>
-															<p><?php echo $p['namaproduk'] ?></p>
-															<div class="stars">
-																<?php
-																	$bintang = '<i class="fa fa-star blue-star" aria-hidden="true"></i>';
-																	$rate = $p['rate'];
-
-																	for ($n = 1; $n <= $rate; $n++) {
-																		echo '<i class="fa fa-star blue-star" aria-hidden="true"></i>';
-																	};
-																	?>
+																							?><div class="col-md-4 top_brand_left" style="margin-bottom: 2%;">
+														<div class="hover14 column">
+															<div class="agile_top_brand_left_grid">
+																<div class="agile_top_brand_left_grid1">
+																	<figure>
+																		<div class="snipcart-item block">
+																			<div class="snipcart-thumb"><a
+																					href="product.php?idproduk=<?php echo $p['idproduk'] ?>"><img
+																						title=" " alt=" "
+																						src="<?php echo $p['gambar'] ?>"
+																						width="200px"
+																						height="200px" /></a>
+																				<p><?php echo $p['namaproduk'] ?>
+																				</p>
+																				<h4 style="font-family: 'Poppins', sans-serif;">Rp<?php echo number_format($p['hargaafter']) ?>
+																				</h4>
+																			</div>
+																			<div
+																				class="snipcart-details top_brand_home_details">
+																				<fieldset><a
+																						href="product.php?idproduk=<?php echo $p['idproduk'] ?>"><input
+																							type="submit" class="button"
+																							value="Lihat Produk" /></a>
+																				</fieldset>
+																			</div>
+																		</div>
+																	</figure>
+																</div>
 															</div>
-															<h4>Rp<?php echo number_format($p['hargaafter']) ?>
-																<span>Rp<?php echo number_format($p['hargabefore']) ?></span>
-															</h4>
 														</div>
-														<div class="snipcart-details top_brand_home_details">
-															<fieldset>
-																<a
-																	href="product.php?idproduk=<?php echo $p['idproduk'] ?>"><input
-																		type="submit" class="button"
-																		value="Lihat Produk" /></a>
-															</fieldset>
-														</div>
-													</div>
-												</figure>
+													</div><?php
+																							}
+																		?><div class="clearfix"></div>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<?php
-								}
-								?>
-
-
-								<div class="clearfix"> </div>
 							</div>
 						</div>
-
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //top-brands -->
+						<!-- //top-brands -->
 
 
 
 
 
-	<!-- //footer -->
-	<div class="footer">
-		<div class="container">
-			<div class="w3_footer_grids">
-				<div class="col-md-4 w3_footer_grid">
-					<h3>Hubungi Kami</h3>
+							<!-- //footer -->
+								<div class="footer">
+									<div class="container">
+										<div class="w3_footer_grids">
+											<div class="col-md-4 w3_footer_grid">
+												<h3>Hubungi Kami</h3>
+												<ul class="address">
+													<li><i class="glyphicon glyphicon-map-marker"
+															aria-hidden="true"></i>Nama,
+														Lokasi</li>
+													<li><i class="glyphicon glyphicon-envelope"
+															aria-hidden="true"></i><a
+															href="mailto:info@email">info@email</a></li>
+													<li><i class="glyphicon glyphicon-earphone"
+															aria-hidden="true"></i>+62 0000 000</li>
+												</ul>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+									<div class="footer-copy">
+										<div class="container">
+											<p>© 2022 One Server. All rights reserved</p>
+										</div>
+									</div>
+								</div>
+								<div class="footer-botm">
+									<div class="container">
+										<div class="w3layouts-foot">
+											<ul>
+												<li><a href="#" class="w3_agile_instagram"><i class="fa fa-instagram"
+															aria-hidden="true"></i></a></li>
+												<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook"
+															aria-hidden="true"></i></a></li>
+												<li><a href="#" class="agile_twitter"><i class="fa fa-twitter"
+															aria-hidden="true"></i></a></li>
+											</ul>
+										</div>
+										<div class="payment-w3ls"><img src="images/card.png" alt=" "
+												class="img-responsive"></div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+								<!-- //footer -->
 
-					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Nama, Lokasi</li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a
-								href="mailto:info@email">info@email</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 0000 000</li>
-					</ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
+									<!-- Bootstrap Core JavaScript -->
+										<script src="js/bootstrap.min.js"></script>
+										<!-- top-header and slider -->
+											<!-- here stars scrolling icon -->
+												<script type="text/javascript">
+													$(document).ready(function () {
 
-		<div class="footer-copy">
+															var defaults = {
+																containerID: 'toTop', // fading element id
+																containerHoverID: 'toTopHover', // fading element hover id
+																scrollSpeed: 4000,
+																easingType: 'linear'
+															}
 
-			<div class="container">
-				<p>© 2022 One Server. All rights reserved</p>
-			</div>
-		</div>
-
-	</div>
-	<div class="footer-botm">
-		<div class="container">
-			<div class="w3layouts-foot">
-				<ul>
-					<li><a href="#" class="w3_agile_instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-					</li>
-					<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-					<li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-				</ul>
-			</div>
-			<div class="payment-w3ls">
-				<img src="images/card.png" alt=" " class="img-responsive">
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //footer -->
-	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>
-
-	<!-- top-header and slider -->
-	<!-- here stars scrolling icon -->
-	<script type="text/javascript">
-		$(document).ready(function () {
-
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 4000,
-				easingType: 'linear'
-			};
+															;
 
 
-			$().UItoTop({
-				easingType: 'easeOutQuart'
-			});
+															$().UItoTop({
+																	easingType: 'easeOutQuart'
+																}
 
-		});
-	</script>
-	<!-- //here ends scrolling icon -->
+															);
 
-	<!-- main slider-banner -->
-	<script src="js/skdslider.min.js"></script>
-	<link href="css/skdslider.css" rel="stylesheet">
-	<script type="text/javascript">
-		jQuery(document).ready(function () {
-			jQuery('#demo1').skdslider({
-				'delay': 5000,
-				'animationSpeed': 2000,
-				'showNextPrev': true,
-				'showPlayButton': true,
-				'autoSlide': true,
-				'animationType': 'fading'
-			});
+														}
 
-			jQuery('#responsive').change(function () {
-				$('#responsive_wrapper').width(jQuery(this).val());
-			});
+													);
+												</script>
+												<!-- //here ends scrolling icon -->
 
-		});
-	</script>
-	<!-- //main slider-banner -->
+													<!-- main slider-banner -->
+														<script src="js/skdslider.min.js"></script>
+														<link href="css/skdslider.css" rel="stylesheet">
+														<script type="text/javascript">
+															jQuery(document).ready(function () {
+																	jQuery('#demo1').skdslider({
+																			'delay': 5000,
+																			'animationSpeed': 2000,
+																			'showNextPrev': true,
+																			'showPlayButton': true,
+																			'autoSlide': true,
+																			'animationType': 'fading'
+																		}
+
+																	);
+
+																	jQuery('#responsive').change(function () {
+																			$('#responsive_wrapper').width(jQuery(this).val());
+																		}
+
+																	);
+
+																}
+
+															);
+														</script>
+														<!-- //main slider-banner -->
 </body>
 
 </html>

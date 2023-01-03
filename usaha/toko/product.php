@@ -4,84 +4,6 @@ include 'dbconnect.php';
 
 $idproduk = $_GET['idproduk'];
 
-if (isset($_POST['addprod'])) {
-	if (!isset($_SESSION['log'])) {
-		header('location:login.php');
-	} else {
-		$ui = $_SESSION['id'];
-		$cek = mysqli_query($conn, "SELECT * FROM toko_cart WHERE userid='$ui' AND STATUS='Cart'");
-		$liat = mysqli_num_rows($cek);
-		$f = mysqli_fetch_array($cek);
-		$orid = $f['orderid'];
-
-		// kalo ternyata udah ada order id nya
-		if ($liat > 0) {
-
-			// cek barang serupa
-			$cekbrg = mysqli_query($conn, "SELECT * FROM toko_detailorder WHERE idproduk='$idproduk' AND orderid='$orid'");
-			$liatlg = mysqli_num_rows($cekbrg);
-			$brpbanyak = mysqli_fetch_array($cekbrg);
-			$jmlh = $brpbanyak['qty'];
-
-			//kalo ternyata barangnya ud ada
-			if ($liatlg > 0) {
-				$i = 1;
-				$baru = $jmlh + $i;
-
-				$updateaja = mysqli_query($conn, "UPDATE toko_detailorder SET qty='$baru' WHERE orderid='$orid' AND idproduk='$idproduk'");
-
-				if ($updateaja) {
-					echo " <div class='alert alert-success'>
-								Barang sudah pernah dimasukkan ke keranjang, jumlah akan ditambahkan
-							  </div>
-							  <meta http-equiv='refresh' content='1; url= product.php?idproduk=" . $idproduk . "'/>";
-				} else {
-					echo "<div class='alert alert-warning'>
-								Gagal menambahkan ke keranjang
-							  </div>
-							  <meta http-equiv='refresh' content='1; url= product.php?idproduk=" . $idproduk . "'/>";
-				}
-			} else {
-
-				$tambahdata = mysqli_query($conn, "INSERT INTO toko_detailorder (orderid,idproduk,qty) VALUES ('$orid','$idproduk','1')");
-				if ($tambahdata) {
-					echo " <div class='alert alert-success'>
-								Berhasil menambahkan ke keranjang
-							  </div>
-							<meta http-equiv='refresh' content='1; url= product.php?idproduk=" . $idproduk . "'/>  ";
-				} else {
-					echo "<div class='alert alert-warning'>
-								Gagal menambahkan ke keranjang
-							  </div>
-							 <meta http-equiv='refresh' content='1; url= product.php?idproduk=" . $idproduk . "'/> ";
-				}
-			};
-		} else {
-
-			//kalo belom ada order id nya
-			$oi = crypt(rand(22, 999), time());
-
-			$bikincart = mysqli_query($conn, "INSERT INTO toko_cart (orderid, userid) VALUES ('$oi','$ui')");
-
-			if ($bikincart) {
-				$tambahuser = mysqli_query($conn, "INSERT INTO toko_detailorder (orderid,idproduk,qty) VALUES ('$oi','$idproduk','1')");
-				if ($tambahuser) {
-					echo " <div class='alert alert-success'>
-								Berhasil menambahkan ke keranjang
-							  </div>
-							<meta http-equiv='refresh' content='1; url= product.php?idproduk=" . $idproduk . "'/>  ";
-				} else {
-					echo "<div class='alert alert-warning'>
-								Gagal menambahkan ke keranjang
-							  </div>
-							 <meta http-equiv='refresh' content='1; url= product.php?idproduk=" . $idproduk . "'/> ";
-				}
-			} else {
-				echo "gagal bikin cart";
-			}
-		}
-	}
-};
 ?>
 
 <!DOCTYPE html>
@@ -92,8 +14,32 @@ if (isset($_POST['addprod'])) {
 	<!-- for-mobile-apps -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
+
+
+	<style type="text/css">
+		*, html, body, .ini {
+			font-family: 'Poppins', sans-serif;
+		}
+
+		a .tombol {
+			font-size: 14px;
+			color: #fff;
+			background: #3399cc;
+			text-decoration: none;
+			position: relative;
+			border: none;
+			border-radius: 0;
+			width: 100%;
+			text-transform: uppercase;
+			padding: 7px 0px;
+			outline: none;
+		}
+	</style>
 	<script type="application/x-javascript">
-		addEventListener("load", function () {
+		addEventListener("load", function() {
 			setTimeout(hideURLbar, 0);
 		}, false);
 
@@ -115,18 +61,14 @@ if (isset($_POST['addprod'])) {
 	<!-- js -->
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<!-- //js -->
-	<link
-		href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
-		rel='stylesheet' type='text/css'>
-	<link
-		href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
-		rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 	<!-- start-smoth-scrolling -->
 	<script type="text/javascript" src="js/move-top.js"></script>
 	<script type="text/javascript" src="js/easing.js"></script>
 	<script type="text/javascript">
-		jQuery(document).ready(function ($) {
-			$(".scroll").click(function (event) {
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event) {
 				event.preventDefault();
 				$('html,body').animate({
 					scrollTop: $(this.hash).offset().top
@@ -172,8 +114,7 @@ if (isset($_POST['addprod'])) {
 				</ul>
 			</div>
 			<div class="product_list_header">
-				<a href="cart.php"><button class="w3view-cart" type="submit" name="submit" value=""><i
-							class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+				<a href="cart.php"><button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 				</a>
 			</div>
 			<div class="clearfix"> </div>
@@ -210,22 +151,20 @@ if (isset($_POST['addprod'])) {
 			<nav class="navbar navbar-default">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header nav_2">
-					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-						data-target="#bs-megadropdown-tabs">
+					<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
 				</div>
-				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs"> 
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="../../index.html" class="act">BUMDes SiMak</a></li>
 						<li class="active"><a href="index.php" class="act">Home</a></li>
 						<!-- Mega Menu -->
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b
-									class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Kategori Produk<b class="caret"></b></a>
 							<ul class="dropdown-menu multi-column columns-3">
 								<div class="row">
 									<div class="multi-gd-img">
@@ -237,9 +176,8 @@ if (isset($_POST['addprod'])) {
 											while ($p = mysqli_fetch_array($kat)) {
 
 											?>
-											<li><a
-													href="kategori.php?idkategori=<?php echo $p['idkategori'] ?>"><?php echo $p['namakategori'] ?></a>
-											</li>
+												<li><a href="kategori.php?idkategori=<?php echo $p['idkategori'] ?>"><?php echo $p['namakategori'] ?></a>
+												</li>
 
 											<?php
 											}
@@ -250,8 +188,6 @@ if (isset($_POST['addprod'])) {
 								</div>
 							</ul>
 						</li>
-						<li><a href="cart.php">Keranjang Saya</a></li>
-						<li><a href="konfirmasi.php">Daftar Order</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -281,32 +217,21 @@ if (isset($_POST['addprod'])) {
 				</div>
 				<div class="col-md-8 agileinfo_single_right">
 					<h2><?php echo $p['namaproduk'] ?></h2>
-					<div class="rating1">
-						<span class="starRating">
-							<?php
-							$bintang = '<i class="fa fa-star blue-star" aria-hidden="true"></i>';
-							$rate = $p['rate'];
-
-							for ($n = 1; $n <= $rate; $n++) {
-								echo '<i class="fa fa-star blue-star" aria-hidden="true"></i>';
-							};
-							?>
-						</span>
-					</div>
 					<div class="w3agile_description">
 						<h4>Deskripsi :</h4>
 						<p><?php echo $p['deskripsi'] ?></p>
 					</div>
 					<div class="snipcart-item block">
 						<div class="snipcart-thumb agileinfo_single_right_snipcart">
-							<h4 class="m-sing">Rp<?php echo number_format($p['hargaafter']) ?>
-								<span>Rp<?php echo number_format($p['hargabefore']) ?></span></h4>
+							<h4 style="font-family: 'Poppins', sans-serif;" class="m-sing">Rp<?php echo number_format($p['hargaafter']) ?>
 						</div>
 						<div class="snipcart-details agileinfo_single_right_details">
-							<form action="#" method="post">
+							<form action="https://wa.me/6285243187590?text=Saya%20ingin%20membeli%20internet%20100" method="get">
 								<fieldset>
 									<input type="hidden" name="idprod" value="<?php echo $idproduk ?>">
-									<input type="submit" name="addprod" value="Add to cart" class="button">
+									<button type="button" class="btn btn-primary btn-block">
+										<a href="https://wa.me/6285243187590?text=Saya%20ingin%20membeli%20<?php echo $p['namaproduk']; ?>" target="_blank" style="margin-top: 20px; color: white; text-decoration: none;" class="tombol">Pilih Paket</a>
+									</button>
 								</fieldset>
 							</form>
 						</div>
@@ -326,8 +251,7 @@ if (isset($_POST['addprod'])) {
 
 					<ul class="address">
 						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>Nama, Lokasi</li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a
-								href="mailto:info@email">info@email</a></li>
+						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@email">info@email</a></li>
 						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+62 0000 000</li>
 					</ul>
 				</div>
@@ -366,7 +290,7 @@ if (isset($_POST['addprod'])) {
 	<!-- top-header and slider -->
 	<!-- here stars scrolling icon -->
 	<script type="text/javascript">
-		$(document).ready(function () {
+		$(document).ready(function() {
 
 			var defaults = {
 				containerID: 'toTop', // fading element id
@@ -388,7 +312,7 @@ if (isset($_POST['addprod'])) {
 	<script src="js/skdslider.min.js"></script>
 	<link href="css/skdslider.css" rel="stylesheet">
 	<script type="text/javascript">
-		jQuery(document).ready(function () {
+		jQuery(document).ready(function() {
 			jQuery('#demo1').skdslider({
 				'delay': 5000,
 				'animationSpeed': 2000,
@@ -398,7 +322,7 @@ if (isset($_POST['addprod'])) {
 				'animationType': 'fading'
 			});
 
-			jQuery('#responsive').change(function () {
+			jQuery('#responsive').change(function() {
 				$('#responsive_wrapper').width(jQuery(this).val());
 			});
 

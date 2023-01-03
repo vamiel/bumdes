@@ -88,9 +88,6 @@ if (isset($_POST['login'])) {
 	<!-- header -->
 	<div class="agileits_header">
 		<div class="container">
-			<div class="w3l_offers">
-				<p>DAPATKAN PENAWARAN MENARIK KHUSUS HARI INI, <a href="products.php">BELANJA SEKARANG!</a></p>
-			</div>
 			<div class="agile-login">
 				<ul>
 					<li><a href="registered.php"> Daftar</a></li>

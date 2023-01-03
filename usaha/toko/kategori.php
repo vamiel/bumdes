@@ -26,6 +26,21 @@ $idk = $_GET['idkategori'];
 	<link href="../../assets/img/favicon_io/favicon.ico" rel="icon">
 	<link href="../../assets/img/favicon_io/favicon.ico" rel="apple-touch-icon">
 
+	<!-- Google Fonts -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet" />
+
+
+	<style type="text/css">
+		*,
+		html,
+		body,
+		.ini {
+			font-family: 'Poppins', sans-serif;
+		}
+	</style>
+
 	<!-- //for-mobile-apps -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -61,9 +76,6 @@ $idk = $_GET['idkategori'];
 	<!-- header -->
 	<div class="agileits_header">
 		<div class="container">
-			<div class="w3l_offers">
-				<p>DAPATKAN PENAWARAN MENARIK KHUSUS HARI INI, BELANJA SEKARANG!</p>
-			</div>
 			<div class="agile-login">
 				<ul>
 					<?php
@@ -76,7 +88,7 @@ $idk = $_GET['idkategori'];
 
 						if ($_SESSION['role'] == 'Member') {
 							echo '
-					<li style="color:white">Halo, ' . $_SESSION["name"] . '
+					<li style="color:white; margin-right: 20px">Halo, ' . $_SESSION["name"] . '
 					<li><a href="logout.php">Keluar?</a></li>
 					';
 						} else {
@@ -170,8 +182,6 @@ $idk = $_GET['idkategori'];
 								</div>
 							</ul>
 						</li>
-						<li><a href="cart.php">Keranjang Saya</a></li>
-						<li><a href="daftarorder.php">Daftar Order</a></li>
 					</ul>
 				</div>
 			</nav>
@@ -240,8 +250,7 @@ $idk = $_GET['idkategori'];
 														src="<?php echo $p['gambar'] ?>" width="200px"
 														height="200px"></a>
 												<p><?php echo $p['namaproduk'] ?></p>
-												<h4>Rp<?php echo number_format($p['hargaafter']) ?>
-													<span>Rp<?php echo number_format($p['hargabefore']) ?></span></h4>
+												<h4 style="font-family: 'Poppins', sans-serif;">Rp<?php echo number_format($p['hargaafter']) ?>
 											</div>
 											<div class="snipcart-details top_brand_home_details">
 												<fieldset>
